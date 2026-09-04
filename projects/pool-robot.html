@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>Autonomous Pool-Playing Robot — Austin Li</title>
 <meta name="description" content="An omni-directional VEX robot that finds a pool ball with one laser sensor and strikes it into a pocket.">
 <meta name="author" content="Austin Li">
@@ -59,6 +60,21 @@
       <img src="../assets/img/p3-team.webp" alt="The project team with the robot at the pool table" width="1400" height="1050" loading="lazy" decoding="async">
     </figure>
     </div>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pool-robot">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">An omni-directional VEX robot that locates a pool ball using a single laser distance sensor and strikes it into a pocket. I designed the scissor striking mechanism and wrote the ball detection algorithm in C++.</p>
+    </div>
+    <div class="deep" id="deep-pool-robot">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>The Autonomous Pool-Playing Robot was built as a group project for my final Mechatronics Project of first year. The robot was built around standard VEX components, and our goal was to push these components to the limits of their capabilities.</p>
     <p class="lead">My group and I designed, coded and tested an omni-directional robot which could successfully locate and strike a pool ball into a pocket.</p>
@@ -107,14 +123,20 @@
           <source src="../assets/video/pool-full-demo.mp4" type="video/mp4">
           <source src="../assets/video/pool-full-demo.webm" type="video/webm">
         </video>
-        <button type="button" class="video-replay" data-replay>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
-                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Replay
-        </button>
+        <div class="video-tools">
+          <button type="button" class="video-btn video-replay" data-replay>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>Replay
+          </button>
+          <button type="button" class="video-btn video-speed" data-speed
+                  aria-label="Playback speed">1&times;</button>
+        </div>
       </div>
     </figure>
+      </div>
+    </div>
       </div>
     </article>
   </section>

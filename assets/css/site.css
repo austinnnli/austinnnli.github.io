@@ -367,19 +367,98 @@ figcaption {
 
 .media-stack { display: grid; gap: clamp(16px, 2.4vw, 26px); }
 
-/* --- replay control on a looping video --------------------- */
+/* --- a row whose items keep their own aspect but share a height --------- */
 
-.video-wrap { position: relative; }
-.video-replay {
-  position: absolute;
-  right: 12px; bottom: 12px;
+.media-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 2.4vw, 28px);
+  margin: clamp(26px, 3.6vw, 42px) 0;
+}
+.media-row__cell { min-width: 0; }
+.media-row figure { margin: 0; }
+
+/* --- a diagram that shouldn't be blown up ------------------------------- */
+
+figure.figure--narrow { margin-inline: auto; max-width: 640px; }
+
+/* --- "In Brief" + dive deeper ------------------------------------------ */
+
+.brief { margin-top: clamp(34px, 4.5vw, 54px); }
+.brief__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px 26px;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+.brief__head .section-title { margin: 0; }
+
+.dive {
   display: inline-flex;
   align-items: center;
+  gap: 9px;
+  padding: 9px 18px;
+  border: 1px solid rgba(22,122,204,.32);
+  border-radius: 999px;
+  background: none;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .015em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .3s var(--ease), border-color .3s var(--ease),
+              background-color .3s var(--ease);
+}
+.dive:hover {
+  color: var(--head);
+  border-color: rgba(22,122,204,.65);
+  background: rgba(22,122,204,.05);
+}
+.dive svg { flex: none; transition: transform .5s var(--ease); }
+.dive[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+.deep__inner { padding-top: clamp(10px, 1.6vw, 20px); }
+
+/* Collapsed only once JS is running, so the content is never trapped. */
+.js .deep {
+  height: 0;
+  overflow: hidden;
+  transition: height .72s var(--ease), opacity .5s var(--ease);
+  opacity: .35;
+}
+.js .deep.is-open { opacity: 1; }
+.js .deep.is-done { height: auto; overflow: visible; }
+
+/* --- controls on a looping video ---------------------------- */
+
+.video-wrap { position: relative; }
+
+.video-tools {
+  position: absolute;
+  right: 12px; bottom: 12px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+}
+.video-wrap:hover .video-tools,
+.video-tools:focus-within { opacity: 1; transform: none; }
+@media (hover: none) { .video-tools { opacity: 1; transform: none; } }
+
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 7px;
   padding: 8px 14px;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  background: rgba(241,238,235,.86);
+  background: rgba(241,238,235,.88);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   color: var(--text);
@@ -388,43 +467,14 @@ figcaption {
   letter-spacing: .12em;
   text-transform: uppercase;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(5px);
-  transition: opacity .35s var(--ease), transform .35s var(--ease),
-              color .3s var(--ease), border-color .3s var(--ease);
+  transition: color .3s var(--ease), border-color .3s var(--ease);
 }
-.video-wrap:hover .video-replay,
-.video-replay:focus-visible { opacity: 1; transform: none; }
-.video-replay:hover { color: var(--head); border-color: rgba(22,122,204,.5); }
-.video-replay svg { flex: none; transition: transform .5s var(--ease); }
+.video-btn:hover { color: var(--head); border-color: rgba(22,122,204,.5); }
+.video-btn svg { flex: none; transition: transform .5s var(--ease); }
 .video-replay:hover svg { transform: rotate(-180deg); }
 .video-replay.is-spun svg { transform: rotate(-360deg); }
-
-/* touch devices have no hover — keep it visible there */
-@media (hover: none) {
-  .video-replay { opacity: 1; transform: none; }
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 3.5vw, 46px);
-  margin-top: clamp(24px, 3vw, 34px);
-}
-.step { display: flex; flex-direction: column; }
-.step figure { margin-top: auto; }
-.step__no {
-  font-family: var(--display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  color: var(--head);
-  text-align: left;
-  margin-bottom: .6em;
-}
-.step p { font-size: .98rem; }
-.step figure { margin: clamp(18px, 2.4vw, 26px) 0 0; }
-.step > p:last-of-type { margin-bottom: 0; }
+.video-speed { min-width: 48px; letter-spacing: .06em; }
+.video-speed.is-fast { color: var(--accent); border-color: rgba(22,122,204,.55); }
 
 /* --- the "skip" bubble ------------------------------------- */
 
@@ -766,6 +816,9 @@ a.modal__val:hover { color: var(--accent); }
     box-shadow: 0 8px 26px -14px rgba(48,48,48,.5);
   }
   .media-pair { grid-template-columns: 1fr; }
+  .media-row { flex-direction: column; }
+  .media-row__cell { flex: none !important; width: 100%; }
+  .brief__head { align-items: flex-start; }
   .skip-next { top: auto; bottom: 20px; right: 50%; transform: translate(50%, 20px) scale(.94); }
   .skip-next.is-shown { transform: translate(50%, 0) scale(1); }
   .modal__row { grid-template-columns: 1fr; gap: 2px; }
@@ -779,6 +832,7 @@ a.modal__val:hover { color: var(--accent); }
   }
   .reveal, .project__title { opacity: 1 !important; transform: none !important; }
   .dot { transform: scale(1) !important; opacity: 1 !important; }
+  .js .deep { transition: none; }
 }
 
 @media print {

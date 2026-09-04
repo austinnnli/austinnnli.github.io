@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>AutoCleat — Austin Li</title>
 <meta name="description" content="A shoe attachment that deploys ice spikes only when it needs to — built in 24 hours at Waterloo EngHacks.">
 <meta name="author" content="Austin Li">
@@ -54,16 +55,35 @@
     <figure class="">
       <img src="../assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-autocleat">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">A shoe attachment that deploys ice spikes when winter surfaces turn unsafe and retracts them indoors, so you never stop to change footwear. Built in 24 hours at Waterloo EngHacks.</p>
+    </div>
+    <div class="deep" id="deep-autocleat">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>AutoCleat is a shoe attachment that automatically deploys ice spikes when winter surfaces become unsafe. It was designed to solve the awkwardness of traditional cleats, which work outdoors but become inconvenient or damaging when walking indoors.</p>
     <p>AutoCleat was built in 24 hours as a submission to the Waterloo Enghacks Hackathon.</p>
-    <div class="media-pair">
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:0.9512 1 0">
     <figure class="">
-      <img src="../assets/img/p4-shoe-side.webp" alt="Side view of the AutoCleat frame strapped to a shoe" width="1100" height="1467" loading="lazy" decoding="async">
+      <img src="../assets/img/p4-shoe-side.webp" alt="Side view of the AutoCleat frame strapped to a shoe" width="1150" height="1209" loading="lazy" decoding="async">
     </figure>
+      </div>
+      <div class="media-row__cell" style="flex:0.9965 1 0">
     <figure class="">
-      <img src="../assets/img/p4-shoe-worn.webp" alt="AutoCleat being worn, with wiring to the ankle-mounted controller" width="1100" height="1467" loading="lazy" decoding="async">
+      <img src="../assets/img/p4-shoe-worn.webp" alt="AutoCleat being worn, with wiring to the ankle-mounted controller" width="1150" height="1154" loading="lazy" decoding="async">
     </figure>
+      </div>
     </div>
     <figure class="">
       <img src="../assets/img/p4-prototype.webp" alt="The AutoCleat prototype and its ankle cuff on the bench" width="1400" height="1050" loading="lazy" decoding="async">
@@ -76,14 +96,18 @@
           <source src="../assets/video/autocleat-demo.mp4" type="video/mp4">
           <source src="../assets/video/autocleat-demo.webm" type="video/webm">
         </video>
-        <button type="button" class="video-replay" data-replay>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
-                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Replay
-        </button>
+        <div class="video-tools">
+          <button type="button" class="video-btn video-replay" data-replay>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>Replay
+          </button>
+        </div>
       </div>
     </figure>
+      </div>
+    </div>
       </div>
     </article>
   </section>

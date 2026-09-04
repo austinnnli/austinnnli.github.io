@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>FORC Speed Controller — Austin Li</title>
 <meta name="description" content="A high-power ESC built around the Vedder architecture — and a first attempt at PCB design, in Altium.">
 <meta name="author" content="Austin Li">
@@ -54,6 +55,21 @@
     <figure class="">
       <img src="../assets/img/p2-cover.webp" alt="3D render of the FORC speed controller PCB" width="1320" height="813" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-forc-speed-controller">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">FORC is a high-power ESC for field oriented control, laid out in Altium around the Vedder architecture. It was my first PCB, taken from no experience at all to a finished board.</p>
+    </div>
+    <div class="deep" id="deep-forc-speed-controller">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>Before starting this project, I had no experience in PCB design, at all. I had never touched a PCB software nor taken any advanced circuits courses. However, knowing how universal the applications of printed circuit boards are, I wanted to learn the process of how they are designed.</p>
     <p class="lead">So, I designed FORC, my attempt at a high-power ESC specifically designed for Field Oriented Control. The software I used was Altium, which I chose over other beginner friendly choices like KiCad because it is more of an industry standard. My design is based on the Vedder ESC architecture, which is the gold standard for speed controllers in the application I am looking for.</p>
@@ -64,6 +80,8 @@
     <figure class="">
       <img src="../assets/img/p2-layout.webp" alt="Altium board layout of FORC with copper pours and routing visible" width="1680" height="806" loading="lazy" decoding="async">
     </figure>
+      </div>
+    </div>
       </div>
     </article>
   </section>

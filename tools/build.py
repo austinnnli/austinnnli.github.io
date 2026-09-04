@@ -19,6 +19,11 @@ def dims(name):
     d = _DIMS[name]
     return ' width="%d" height="%d"' % d if d else ''
 
+def aspect(name):
+    dims(name)
+    d = _DIMS.get(name)
+    return (d[0] / d[1]) if d else 1.0
+
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # repo root
 
 SITE = {
@@ -44,13 +49,14 @@ SITE = {
 def h(t):        return {'k': 'h',    'text': t}
 def p(t):        return {'k': 'p',    'text': t}
 def lead(t):     return {'k': 'lead', 'text': t}
-def img(src, alt, cap=None):
-    return {'k': 'img', 'src': src, 'alt': alt, 'cap': cap}
+def img(src, alt, cap=None, narrow=False):
+    return {'k': 'img', 'src': src, 'alt': alt, 'cap': cap, 'narrow': narrow}
 def pair(a, b):  return {'k': 'pair', 'items': [a, b]}
+def row(*it):    return {'k': 'row', 'items': list(it)}   # equal heights, native aspects
 def stack(*it):  return {'k': 'stack', 'items': list(it)}
-def video(src, poster, alt, cap=None, replay=False):
+def video(src, poster, alt, cap=None, replay=False, speed=False):
     return {'k': 'video', 'src': src, 'poster': poster, 'alt': alt, 'cap': cap,
-            'replay': replay}
+            'replay': replay, 'speed': speed}
 def steps(a, b): return {'k': 'steps', 'items': [a, b]}
 def cad(model, cap=None):
     return {'k': 'cad', 'model': model, 'cap': cap}
@@ -59,6 +65,7 @@ def cad(model, cap=None):
 PROJECTS = [
 {
   'slug':  'pmsm-hub-motor',
+  'brief': "A permanent-magnet synchronous hub motor I built from scratch &mdash; stator, windings, rotor and magnets &mdash; designed specifically for field oriented control, and destined to drive a DIY OneWheel.",
   'title': 'PMSM OneWheel Hub Motor',
   'blurb': 'A permanent-magnet synchronous hub motor designed and built from scratch, '
            'specced end to end for field oriented control.',
@@ -73,11 +80,11 @@ PROJECTS = [
       'everywhere, everything from linear motion to water-pumps and turbines often start as '
       'rotation driven by motors, and without them the world would be a much more stationary '
       'place (you could almost say motors make the world turn&hellip;).'),
-    lead('I wanted to know how motors work, so I set out to build one entirely from scratch. '
-         'Everything from the stator windings to the magnetic rotor I specced, designed, and built. '
-         'Moreover, the motor I&rsquo;m building is designed specifically for Field Oriented Control, '
-         'meaning the need for a built-in magnetic encoder for rotor angle, and large arc magnets '
-         'for a sinusoidal back-EMF profile.'),
+    lead('I wanted to know how motors work, so I built one entirely from scratch. Everything from '
+         'the stator windings to the magnetic rotor, I specced, designed, built, and tested. '
+         'Moreover, to make it more challenging and to squeeze a little bit more efficiency out of '
+         'it, I designed the motor specifically for Field Oriented Control meaning the need for a '
+         'magnetic encoder, distributed windings, and large arc magnets.'),
     p('Being a personal project, much of this build was constrained by budgets, but through various '
       'attempts to compromise and de-scope, I was able to assemble a first prototype which is '
       'currently being tested. The ultimate goal of this project is to use the motor in a larger '
@@ -90,6 +97,12 @@ PROJECTS = [
     pair(img('p1-cad-section', 'Section view of the hub motor assembly in SolidWorks'),
          img('p1-cad-exploded', 'Exploded view of the hub motor assembly')),
     img('p1-stator-housing', 'The wound stator seated in its printed housing'),
+    img('p1-winding',
+        'Winding diagram for the 36-slot stator: three phases distributed across the slots, '
+        'with the rotor magnet arcs shown on the outer ring',
+        'The winding layout I worked out for the 36-slot stator &mdash; three phases distributed '
+        'across the slots, with the rotor&rsquo;s magnet arcs on the outer ring.',
+        narrow=True),
 
     h('Field Oriented Control'),
     p('I wanted to use field oriented control (FOC) to drive this motor. This meant two things that '
@@ -120,14 +133,15 @@ PROJECTS = [
     p('Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly '
       'sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc '
       'cogging with the stator.'),
-    pair(video('backemf-validation', 'poster-backemf-validation',
-               'Back-EMF measured on an oscilloscope while the motor is spun by hand'),
-         img('p1-scope',
-             'Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes')),
+    row(video('backemf-validation', 'poster-backemf-validation',
+              'Back-EMF measured on an oscilloscope while the motor is spun by hand'),
+        img('p1-scope',
+            'Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes')),
   ],
 },
 {
   'slug':  'forc-speed-controller',
+  'brief': "FORC is a high-power ESC for field oriented control, laid out in Altium around the Vedder architecture. It was my first PCB, taken from no experience at all to a finished board.",
   'title': 'FORC Speed Controller',
   'blurb': 'A high-power ESC built around the Vedder architecture &mdash; and a first '
            'attempt at PCB design, in Altium.',
@@ -153,6 +167,7 @@ PROJECTS = [
 },
 {
   'slug':  'pool-robot',
+  'brief': "An omni-directional VEX robot that locates a pool ball using a single laser distance sensor and strikes it into a pocket. I designed the scissor striking mechanism and wrote the ball detection algorithm in C++.",
   'title': 'Autonomous Pool-Playing Robot',
   'blurb': 'An omni-directional VEX robot that finds a pool ball with one laser sensor '
            'and strikes it into a pocket.',
@@ -198,11 +213,12 @@ PROJECTS = [
     h('Full Video Demo'),
     video('pool-full-demo', 'poster-pool-full-demo',
           'Full demonstration of the robot locating and striking the ball into a pocket',
-          replay=True),
+          replay=True, speed=True),
   ],
 },
 {
   'slug':  'autocleat',
+  'brief': "A shoe attachment that deploys ice spikes when winter surfaces turn unsafe and retracts them indoors, so you never stop to change footwear. Built in 24 hours at Waterloo EngHacks.",
   'title': 'AutoCleat',
   'blurb': 'A shoe attachment that deploys ice spikes only when it needs to &mdash; '
            'built in 24 hours at Waterloo EngHacks.',
@@ -215,8 +231,8 @@ PROJECTS = [
       'become unsafe. It was designed to solve the awkwardness of traditional cleats, which work '
       'outdoors but become inconvenient or damaging when walking indoors.'),
     p('AutoCleat was built in 24 hours as a submission to the Waterloo Enghacks Hackathon.'),
-    pair(img('p4-shoe-side', 'Side view of the AutoCleat frame strapped to a shoe'),
-         img('p4-shoe-worn', 'AutoCleat being worn, with wiring to the ankle-mounted controller')),
+    row(img('p4-shoe-side', 'Side view of the AutoCleat frame strapped to a shoe'),
+        img('p4-shoe-worn', 'AutoCleat being worn, with wiring to the ankle-mounted controller')),
     img('p4-prototype', 'The AutoCleat prototype and its ankle cuff on the bench'),
     p('The prototype uses temperature sensing to detect icy conditions and an ultrasonic foot-lift '
       'sensor to deploy TPU spikes only when the foot is raised. The spikes retract on safe '
@@ -228,6 +244,7 @@ PROJECTS = [
 },
 {
   'slug':  'cycloidal-gearbox',
+  'brief': "A compact cycloidal reducer for robotic joints &mdash; a high reduction ratio packed into a package just 22&nbsp;mm thick.",
   'title': 'Cycloidal Gearbox for Robotic Joints',
   'blurb': 'A compact 22&nbsp;mm-thick cycloidal reducer designed for robotic joints.',
   'cover': 'cover-cycloid',
@@ -237,12 +254,13 @@ PROJECTS = [
     h('Objective'),
     p('This cycloidal gearbox was designed to be a compact reducer for use in robotic joints. '
       'The final dimensions measure 22mm in thickness.'),
-    pair(img('p5-photo-b', 'Top view of the assembled cycloidal gearbox showing its low profile'),
-         img('p5-exploded', 'Exploded CAD view of the cycloidal gearbox internals')),
+    row(img('p5-photo-b', 'Top view of the assembled cycloidal gearbox showing its low profile'),
+        img('p5-exploded', 'Exploded CAD view of the cycloidal gearbox internals')),
   ],
 },
 {
   'slug':  'rocket-trailer',
+  'brief': "An accurate SolidWorks model of the team&rsquo;s transport trailer, which became the reference every rocket transport fixture was designed against. The full assembly is explorable in 3D inside.",
   'title': 'Rocket Transport Trailer CAD',
   'blurb': 'An accurate SolidWorks model of the team&rsquo;s transport trailer &mdash; the '
            'reference every launch fixture was designed against.',
@@ -268,6 +286,7 @@ PROJECTS = [
 # --------------------------------------------------------------------------- #
 def r_img(b, base, cls=''):
     cap = ('\n      <figcaption>%s</figcaption>' % b['cap']) if b.get('cap') else ''
+    cls = (cls + ' figure--narrow').strip() if b.get('narrow') else cls
     return ('    <figure class="%s">\n'
             '      <img src="%sassets/img/%s.webp" alt="%s"%s loading="lazy" decoding="async">%s\n'
             '    </figure>' % (cls, base, b['src'], html.escape(b['alt'], quote=True),
@@ -282,16 +301,24 @@ def r_video(b, base, cls=''):
            '        </video>' % (dims(b['poster']), base, b['poster'],
                                  html.escape(b['alt'], quote=True),
                                  base, b['src'], base, b['src']))
+    tools = ''
     if b.get('replay'):
+        tools += ('          <button type="button" class="video-btn video-replay" data-replay>\n'
+                  '            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">\n'
+                  '              <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"\n'
+                  '                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>\n'
+                  '            </svg>Replay\n'
+                  '          </button>\n')
+    if b.get('speed'):
+        tools += ('          <button type="button" class="video-btn video-speed" data-speed\n'
+                  '                  aria-label="Playback speed">1&times;</button>\n')
+    if tools:
         body = ('      <div class="video-wrap">\n'
                 '        %s\n'
-                '        <button type="button" class="video-replay" data-replay>\n'
-                '          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">\n'
-                '            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"\n'
-                '                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>\n'
-                '          </svg>Replay\n'
-                '        </button>\n'
-                '      </div>' % vid)
+                '        <div class="video-tools">\n'
+                '%s'
+                '        </div>\n'
+                '      </div>' % (vid, tools))
     else:
         body = '      %s' % vid
     return '    <figure class="%s">\n%s%s\n    </figure>' % (cls, body, cap)
@@ -306,6 +333,14 @@ def r_block(b, base):
     if k == 'pair':
         inner = '\n'.join(r_img(i, base) if i['k'] == 'img' else r_video(i, base) for i in b['items'])
         return '    <div class="media-pair">\n%s\n    </div>' % inner
+    if k == 'row':
+        cells = []
+        for it in b['items']:
+            ar = aspect(it['src'] if it['k'] == 'img' else it['poster'])
+            inner = r_img(it, base) if it['k'] == 'img' else r_video(it, base)
+            cells.append('      <div class="media-row__cell" style="flex:%.4f 1 0">\n%s\n'
+                         '      </div>' % (ar, inner))
+        return '    <div class="media-row">\n%s\n    </div>' % '\n'.join(cells)
     if k == 'stack':
         inner = '\n'.join(r_img(i, base) if i['k'] == 'img' else r_video(i, base) for i in b['items'])
         return '    <div class="media-stack">\n%s\n    </div>' % inner
@@ -329,8 +364,36 @@ def r_block(b, base):
                 '    </figure>' % (base, b['model'], cap))
     return ''
 
-def project_body(pr, base):
-    return '\n'.join(r_block(b, base) for b in pr['body'])
+def project_body(pr, base, uid=''):
+    """Leading media stays visible; from the first sub-heading on, the content
+    lives behind the 'dive deeper' toggle."""
+    body = pr['body']
+    cut = next((i for i, b in enumerate(body) if b['k'] == 'h'), len(body))
+    lead_html = '\n'.join(r_block(b, base) for b in body[:cut])
+    deep_html = '\n'.join(r_block(b, base) for b in body[cut:])
+    did = 'deep-%s%s' % (pr['slug'], uid)
+    out = []
+    if lead_html:
+        out.append(lead_html)
+    out.append("""    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="%s">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">%s</p>
+    </div>
+    <div class="deep" id="%s">
+      <div class="deep__inner">
+%s
+      </div>
+    </div>""" % (did, pr['brief'], did, deep_html))
+    return '\n'.join(out)
 
 # --------------------------------------------------------------------------- #
 #  chrome
@@ -401,6 +464,7 @@ def shell(title, desc, base, body, og_img, scripts=('site',), current=None, cls=
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>{title}</title>
 <meta name="description" content="{html.escape(desc, quote=True)}">
 <meta name="author" content="Austin Li">
@@ -438,7 +502,7 @@ def build_index():
       <h2 class="project__title">{pr['title']}</h2>
     </div>
     <div class="col">
-{project_body(pr, base)}
+{project_body(pr, base, '-main')}
     </div>
   </article>''')
 

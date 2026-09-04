@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>PMSM OneWheel Hub Motor — Austin Li</title>
 <meta name="description" content="A permanent-magnet synchronous hub motor designed and built from scratch, specced end to end for field oriented control.">
 <meta name="author" content="Austin Li">
@@ -54,9 +55,24 @@
     <figure class="">
       <img src="../assets/img/p1-cover.webp" alt="Hand-wound stator of the PMSM hub motor" width="1720" height="1075" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pmsm-hub-motor">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">A permanent-magnet synchronous hub motor I built from scratch &mdash; stator, windings, rotor and magnets &mdash; designed specifically for field oriented control, and destined to drive a DIY OneWheel.</p>
+    </div>
+    <div class="deep" id="deep-pmsm-hub-motor">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>I have always been intrigued by motors (electric motors in particular), the ability to turn electricity into motion seems magical, and yet the way motors are so ubiquitous today turn them into this seemingly simple thing which we take for granted. Motors are literally everywhere, everything from linear motion to water-pumps and turbines often start as rotation driven by motors, and without them the world would be a much more stationary place (you could almost say motors make the world turn&hellip;).</p>
-    <p class="lead">I wanted to know how motors work, so I set out to build one entirely from scratch. Everything from the stator windings to the magnetic rotor I specced, designed, and built. Moreover, the motor I&rsquo;m building is designed specifically for Field Oriented Control, meaning the need for a built-in magnetic encoder for rotor angle, and large arc magnets for a sinusoidal back-EMF profile.</p>
+    <p class="lead">I wanted to know how motors work, so I built one entirely from scratch. Everything from the stator windings to the magnetic rotor, I specced, designed, built, and tested. Moreover, to make it more challenging and to squeeze a little bit more efficiency out of it, I designed the motor specifically for Field Oriented Control meaning the need for a magnetic encoder, distributed windings, and large arc magnets.</p>
     <p>Being a personal project, much of this build was constrained by budgets, but through various attempts to compromise and de-scope, I was able to assemble a first prototype which is currently being tested. The ultimate goal of this project is to use the motor in a larger DIY OneWheel build which has been a dream of mine for a while.</p>
     <h3 class="section-title">Design</h3>
     <p>I began by defining my constraints then modeled everything in SolidWorks, since this first prototype would be largely 3D printed, everything was designed with a heavy focus on DFM for FDM printing.</p>
@@ -70,6 +86,10 @@
     </div>
     <figure class="">
       <img src="../assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1600" height="900" loading="lazy" decoding="async">
+    </figure>
+    <figure class="figure--narrow">
+      <img src="../assets/img/p1-winding.webp" alt="Winding diagram for the 36-slot stator: three phases distributed across the slots, with the rotor magnet arcs shown on the outer ring" width="701" height="705" loading="lazy" decoding="async">
+      <figcaption>The winding layout I worked out for the 36-slot stator &mdash; three phases distributed across the slots, with the rotor&rsquo;s magnet arcs on the outer ring.</figcaption>
     </figure>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
@@ -98,7 +118,8 @@
     </div>
     <h3 class="section-title">Back-EMF Validation</h3>
     <p>Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc cogging with the stator.</p>
-    <div class="media-pair">
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.7751 1 0">
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
                poster="../assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
@@ -106,9 +127,14 @@
           <source src="../assets/video/backemf-validation.webm" type="video/webm">
         </video>
     </figure>
+      </div>
+      <div class="media-row__cell" style="flex:1.3333 1 0">
     <figure class="">
-      <img src="../assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="1100" height="618" loading="lazy" decoding="async">
+      <img src="../assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="900" height="675" loading="lazy" decoding="async">
     </figure>
+      </div>
+    </div>
+      </div>
     </div>
       </div>
     </article>

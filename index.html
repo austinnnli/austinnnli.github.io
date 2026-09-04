@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
 <title>Austin Li — Mechatronics Engineer</title>
 <meta name="description" content="Portfolio of Austin Li, a Waterloo Mechatronics Engineering student: motors, motor control, robotics and mechanical design.">
 <meta name="author" content="Austin Li">
@@ -70,9 +71,24 @@
     <figure class="">
       <img src="assets/img/p1-cover.webp" alt="Hand-wound stator of the PMSM hub motor" width="1720" height="1075" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pmsm-hub-motor-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">A permanent-magnet synchronous hub motor I built from scratch &mdash; stator, windings, rotor and magnets &mdash; designed specifically for field oriented control, and destined to drive a DIY OneWheel.</p>
+    </div>
+    <div class="deep" id="deep-pmsm-hub-motor-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>I have always been intrigued by motors (electric motors in particular), the ability to turn electricity into motion seems magical, and yet the way motors are so ubiquitous today turn them into this seemingly simple thing which we take for granted. Motors are literally everywhere, everything from linear motion to water-pumps and turbines often start as rotation driven by motors, and without them the world would be a much more stationary place (you could almost say motors make the world turn&hellip;).</p>
-    <p class="lead">I wanted to know how motors work, so I set out to build one entirely from scratch. Everything from the stator windings to the magnetic rotor I specced, designed, and built. Moreover, the motor I&rsquo;m building is designed specifically for Field Oriented Control, meaning the need for a built-in magnetic encoder for rotor angle, and large arc magnets for a sinusoidal back-EMF profile.</p>
+    <p class="lead">I wanted to know how motors work, so I built one entirely from scratch. Everything from the stator windings to the magnetic rotor, I specced, designed, built, and tested. Moreover, to make it more challenging and to squeeze a little bit more efficiency out of it, I designed the motor specifically for Field Oriented Control meaning the need for a magnetic encoder, distributed windings, and large arc magnets.</p>
     <p>Being a personal project, much of this build was constrained by budgets, but through various attempts to compromise and de-scope, I was able to assemble a first prototype which is currently being tested. The ultimate goal of this project is to use the motor in a larger DIY OneWheel build which has been a dream of mine for a while.</p>
     <h3 class="section-title">Design</h3>
     <p>I began by defining my constraints then modeled everything in SolidWorks, since this first prototype would be largely 3D printed, everything was designed with a heavy focus on DFM for FDM printing.</p>
@@ -86,6 +102,10 @@
     </div>
     <figure class="">
       <img src="assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1600" height="900" loading="lazy" decoding="async">
+    </figure>
+    <figure class="figure--narrow">
+      <img src="assets/img/p1-winding.webp" alt="Winding diagram for the 36-slot stator: three phases distributed across the slots, with the rotor magnet arcs shown on the outer ring" width="701" height="705" loading="lazy" decoding="async">
+      <figcaption>The winding layout I worked out for the 36-slot stator &mdash; three phases distributed across the slots, with the rotor&rsquo;s magnet arcs on the outer ring.</figcaption>
     </figure>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
@@ -114,7 +134,8 @@
     </div>
     <h3 class="section-title">Back-EMF Validation</h3>
     <p>Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc cogging with the stator.</p>
-    <div class="media-pair">
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.7751 1 0">
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
                poster="assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
@@ -122,9 +143,14 @@
           <source src="assets/video/backemf-validation.webm" type="video/webm">
         </video>
     </figure>
+      </div>
+      <div class="media-row__cell" style="flex:1.3333 1 0">
     <figure class="">
-      <img src="assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="1100" height="618" loading="lazy" decoding="async">
+      <img src="assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="900" height="675" loading="lazy" decoding="async">
     </figure>
+      </div>
+    </div>
+      </div>
     </div>
     </div>
   </article>
@@ -137,6 +163,21 @@
     <figure class="">
       <img src="assets/img/p2-cover.webp" alt="3D render of the FORC speed controller PCB" width="1320" height="813" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-forc-speed-controller-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">FORC is a high-power ESC for field oriented control, laid out in Altium around the Vedder architecture. It was my first PCB, taken from no experience at all to a finished board.</p>
+    </div>
+    <div class="deep" id="deep-forc-speed-controller-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>Before starting this project, I had no experience in PCB design, at all. I had never touched a PCB software nor taken any advanced circuits courses. However, knowing how universal the applications of printed circuit boards are, I wanted to learn the process of how they are designed.</p>
     <p class="lead">So, I designed FORC, my attempt at a high-power ESC specifically designed for Field Oriented Control. The software I used was Altium, which I chose over other beginner friendly choices like KiCad because it is more of an industry standard. My design is based on the Vedder ESC architecture, which is the gold standard for speed controllers in the application I am looking for.</p>
@@ -147,6 +188,8 @@
     <figure class="">
       <img src="assets/img/p2-layout.webp" alt="Altium board layout of FORC with copper pours and routing visible" width="1680" height="806" loading="lazy" decoding="async">
     </figure>
+      </div>
+    </div>
     </div>
   </article>
   <article class="project" data-project data-project-no="03" id="pool-robot">
@@ -163,6 +206,21 @@
       <img src="assets/img/p3-team.webp" alt="The project team with the robot at the pool table" width="1400" height="1050" loading="lazy" decoding="async">
     </figure>
     </div>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pool-robot-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">An omni-directional VEX robot that locates a pool ball using a single laser distance sensor and strikes it into a pocket. I designed the scissor striking mechanism and wrote the ball detection algorithm in C++.</p>
+    </div>
+    <div class="deep" id="deep-pool-robot-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>The Autonomous Pool-Playing Robot was built as a group project for my final Mechatronics Project of first year. The robot was built around standard VEX components, and our goal was to push these components to the limits of their capabilities.</p>
     <p class="lead">My group and I designed, coded and tested an omni-directional robot which could successfully locate and strike a pool ball into a pocket.</p>
@@ -211,14 +269,20 @@
           <source src="assets/video/pool-full-demo.mp4" type="video/mp4">
           <source src="assets/video/pool-full-demo.webm" type="video/webm">
         </video>
-        <button type="button" class="video-replay" data-replay>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
-                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Replay
-        </button>
+        <div class="video-tools">
+          <button type="button" class="video-btn video-replay" data-replay>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>Replay
+          </button>
+          <button type="button" class="video-btn video-speed" data-speed
+                  aria-label="Playback speed">1&times;</button>
+        </div>
       </div>
     </figure>
+      </div>
+    </div>
     </div>
   </article>
   <article class="project" data-project data-project-no="04" id="autocleat">
@@ -230,16 +294,35 @@
     <figure class="">
       <img src="assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-autocleat-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">A shoe attachment that deploys ice spikes when winter surfaces turn unsafe and retracts them indoors, so you never stop to change footwear. Built in 24 hours at Waterloo EngHacks.</p>
+    </div>
+    <div class="deep" id="deep-autocleat-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>AutoCleat is a shoe attachment that automatically deploys ice spikes when winter surfaces become unsafe. It was designed to solve the awkwardness of traditional cleats, which work outdoors but become inconvenient or damaging when walking indoors.</p>
     <p>AutoCleat was built in 24 hours as a submission to the Waterloo Enghacks Hackathon.</p>
-    <div class="media-pair">
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:0.9512 1 0">
     <figure class="">
-      <img src="assets/img/p4-shoe-side.webp" alt="Side view of the AutoCleat frame strapped to a shoe" width="1100" height="1467" loading="lazy" decoding="async">
+      <img src="assets/img/p4-shoe-side.webp" alt="Side view of the AutoCleat frame strapped to a shoe" width="1150" height="1209" loading="lazy" decoding="async">
     </figure>
+      </div>
+      <div class="media-row__cell" style="flex:0.9965 1 0">
     <figure class="">
-      <img src="assets/img/p4-shoe-worn.webp" alt="AutoCleat being worn, with wiring to the ankle-mounted controller" width="1100" height="1467" loading="lazy" decoding="async">
+      <img src="assets/img/p4-shoe-worn.webp" alt="AutoCleat being worn, with wiring to the ankle-mounted controller" width="1150" height="1154" loading="lazy" decoding="async">
     </figure>
+      </div>
     </div>
     <figure class="">
       <img src="assets/img/p4-prototype.webp" alt="The AutoCleat prototype and its ankle cuff on the bench" width="1400" height="1050" loading="lazy" decoding="async">
@@ -252,14 +335,18 @@
           <source src="assets/video/autocleat-demo.mp4" type="video/mp4">
           <source src="assets/video/autocleat-demo.webm" type="video/webm">
         </video>
-        <button type="button" class="video-replay" data-replay>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
-                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Replay
-        </button>
+        <div class="video-tools">
+          <button type="button" class="video-btn video-replay" data-replay>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>Replay
+          </button>
+        </div>
       </div>
     </figure>
+      </div>
+    </div>
     </div>
   </article>
   <article class="project" data-project data-project-no="05" id="cycloidal-gearbox">
@@ -269,17 +356,38 @@
     </div>
     <div class="col">
     <figure class="">
-      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1600" height="900" loading="lazy" decoding="async">
+      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1600" height="1000" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-cycloidal-gearbox-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">A compact cycloidal reducer for robotic joints &mdash; a high reduction ratio packed into a package just 22&nbsp;mm thick.</p>
+    </div>
+    <div class="deep" id="deep-cycloidal-gearbox-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>This cycloidal gearbox was designed to be a compact reducer for use in robotic joints. The final dimensions measure 22mm in thickness.</p>
-    <div class="media-pair">
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.3904 1 0">
     <figure class="">
-      <img src="assets/img/p5-photo-b.webp" alt="Top view of the assembled cycloidal gearbox showing its low profile" width="1200" height="900" loading="lazy" decoding="async">
+      <img src="assets/img/p5-photo-b.webp" alt="Top view of the assembled cycloidal gearbox showing its low profile" width="1300" height="935" loading="lazy" decoding="async">
     </figure>
+      </div>
+      <div class="media-row__cell" style="flex:0.8763 1 0">
     <figure class="">
-      <img src="assets/img/p5-exploded.webp" alt="Exploded CAD view of the cycloidal gearbox internals" width="1200" height="900" loading="lazy" decoding="async">
+      <img src="assets/img/p5-exploded.webp" alt="Exploded CAD view of the cycloidal gearbox internals" width="900" height="1027" loading="lazy" decoding="async">
     </figure>
+      </div>
+    </div>
+      </div>
     </div>
     </div>
   </article>
@@ -292,6 +400,21 @@
     <figure class="">
       <img src="assets/img/p6-cover.webp" alt="CAD render of the rocket transport trailer deck and rails" width="1720" height="755" loading="lazy" decoding="async">
     </figure>
+    <div class="brief">
+      <div class="brief__head">
+        <h3 class="section-title">In Brief</h3>
+        <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-rocket-trailer-main">
+          <span class="dive__label">dive deeper</span>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="lead">An accurate SolidWorks model of the team&rsquo;s transport trailer, which became the reference every rocket transport fixture was designed against. The full assembly is explorable in 3D inside.</p>
+    </div>
+    <div class="deep" id="deep-rocket-trailer-main">
+      <div class="deep__inner">
     <h3 class="section-title">Objective</h3>
     <p>I created an accurate model of a transport trailer in CAD (SolidWorks) which proved to be mission critical for designing fixtures to transport the Team&rsquo;s rocket to the launch site.</p>
     <figure class="">
@@ -299,10 +422,10 @@
     </figure>
     <div class="media-stack">
     <figure class="">
-      <img src="assets/img/p6-real.webp" alt="Photograph of the real transport trailer" width="1600" height="900" loading="lazy" decoding="async">
+      <img src="assets/img/p6-real.webp" alt="Photograph of the real transport trailer" width="1800" height="581" loading="lazy" decoding="async">
     </figure>
     <figure class="">
-      <img src="assets/img/p6-cad-side.webp" alt="Side elevation of the CAD trailer model for comparison" width="1720" height="481" loading="lazy" decoding="async">
+      <img src="assets/img/p6-cad-side.webp" alt="Side elevation of the CAD trailer model for comparison" width="1800" height="382" loading="lazy" decoding="async">
     </figure>
     </div>
     <h3 class="section-title">Explore the model</h3>
@@ -314,6 +437,8 @@
         <button type="button" class="cad__reset">Reset view</button>
       </div>
     </figure>
+      </div>
+    </div>
     </div>
   </article>
   </section>
