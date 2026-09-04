@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORC Speed Controller — Austin Li</title>
+<meta name="description" content="A high-power ESC built around the Vedder architecture — and a first attempt at PCB design, in Altium.">
+<meta name="author" content="Austin Li">
+<meta name="theme-color" content="#f1eeeb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23303030'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='600' fill='%23f1eeeb' text-anchor='middle'%3EAL%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORC Speed Controller — Austin Li">
+<meta property="og:description" content="A high-power ESC built around the Vedder architecture — and a first attempt at PCB design, in Altium.">
+<meta property="og:image" content="https://austinnnli.github.io/assets/img/cover-forc.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/cadview.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="../index.html#top" aria-label="Austin Li — back to the top">
+      <div class="brand__name">Austin&nbsp;Li</div>
+      <div class="brand__role">Mechatronics Engineer</div>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../gallery.html">projects gallery</a>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">resume</a>
+      <a href="https://www.linkedin.com/in/austin-c-li/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/austinnnli" target="_blank" rel="noopener">Github</a>
+      <button type="button" data-contact-open>Contact me</button>
+    </nav>
+  </div>
+</header>
+<main id="main" class="page-project">
+  <section class="projects" data-rail-section>
+    <div class="rail" aria-hidden="true">
+      <div class="rail__track"></div>
+      <div class="rail__fill"></div>
+    </div>
+    <article class="project" data-project data-project-no="02" id="forc-speed-controller">
+      <div class="col project__head">
+        <p class="crumbs"><a href="../index.html">Austin Li</a> &nbsp;/&nbsp;
+          <a href="../gallery.html">Projects</a></p>
+        <p class="project__eyebrow">Project 02</p>
+        <h2 class="project__title">FORC Speed Controller</h2>
+      </div>
+      <div class="col">
+    <figure class="">
+      <img src="../assets/img/p2-cover.webp" alt="3D render of the FORC speed controller PCB" width="1320" height="813" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>Before starting this project, I had no experience in PCB design, at all. I had never touched a PCB software nor taken any advanced circuits courses. However, knowing how universal the applications of printed circuit boards are, I wanted to learn the process of how they are designed.</p>
+    <p class="lead">So, I designed FORC, my attempt at a high-power ESC specifically designed for Field Oriented Control. The software I used was Altium, which I chose over other beginner friendly choices like KiCad because it is more of an industry standard. My design is based on the Vedder ESC architecture, which is the gold standard for speed controllers in the application I am looking for.</p>
+    <p>The ultimate goal of FORC is to use it to drive my DIY OneWheel build, which is why it required specific components like an IMU and FSR sensor.</p>
+    <figure class="">
+      <img src="../assets/img/p2-top.webp" alt="Top-down render of the FORC board showing the power stage and connectors" width="1400" height="758" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="../assets/img/p2-layout.webp" alt="Altium board layout of FORC with copper pours and routing visible" width="1680" height="806" loading="lazy" decoding="async">
+    </figure>
+      </div>
+    </article>
+  </section>
+
+  <div class="col">
+    <nav class="pager" aria-label="Other projects">
+      <a href="pmsm-hub-motor.html"><span class="pager__label">Previous</span>PMSM OneWheel Hub Motor</a>
+      <a href="pool-robot.html" style="text-align:right"><span class="pager__label">Next</span>Autonomous Pool-Playing Robot</a>
+    </nav>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span>&copy; 2026 Austin Li</span>
+    <nav aria-label="Elsewhere">
+      <a href="../gallery.html">Projects gallery</a>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/austin-c-li/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/austinnnli" target="_blank" rel="noopener">Github</a>
+      <a href="mailto:austincheungli@gmail.com">Email</a>
+    </nav>
+  </div>
+</footer>
+<div class="modal" id="contact-modal" role="dialog" aria-modal="true"
+     aria-labelledby="contact-title" aria-hidden="true">
+  <div class="modal__scrim" data-contact-close></div>
+  <div class="modal__panel">
+    <button type="button" class="modal__close" data-contact-close aria-label="Close">&#10005;</button>
+    <h2 class="modal__title" id="contact-title">Contact me</h2>
+    <div class="modal__rows">
+      <div class="modal__row">
+        <span class="modal__key">Email</span>
+        <a class="modal__val" href="mailto:austincheungli@gmail.com">austincheungli@gmail.com</a>
+      </div>
+      <div class="modal__row">
+        <span class="modal__key">Phone</span>
+        <a class="modal__val" href="tel:+12368382903">236-838-2903</a>
+      </div>
+    </div>
+    <p class="modal__note">I am currently open to Winter/Spring 2027 co-op opportunities, contact me so we can work together.</p>
+  </div>
+</div>
+</body>
+</html>

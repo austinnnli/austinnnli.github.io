@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Austin Li — Mechatronics Engineer</title>
+<meta name="description" content="Portfolio of Austin Li, a Waterloo Mechatronics Engineering student: motors, motor control, robotics and mechanical design.">
+<meta name="author" content="Austin Li">
+<meta name="theme-color" content="#f1eeeb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23303030'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='600' fill='%23f1eeeb' text-anchor='middle'%3EAL%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Austin Li — Mechatronics Engineer">
+<meta property="og:description" content="Portfolio of Austin Li, a Waterloo Mechatronics Engineering student: motors, motor control, robotics and mechanical design.">
+<meta property="og:image" content="https://austinnnli.github.io/assets/img/cover-motor.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/cadview.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top" aria-label="Austin Li — back to the top">
+      <div class="brand__name">Austin&nbsp;Li</div>
+      <div class="brand__role">Mechatronics Engineer</div>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="gallery.html">projects gallery</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">resume</a>
+      <a href="https://www.linkedin.com/in/austin-c-li/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/austinnnli" target="_blank" rel="noopener">Github</a>
+      <button type="button" data-contact-open>Contact me</button>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <span id="top"></span>
+
+  <section class="hero wrap">
+    <div class="hero__grid reveal">
+      <img class="hero__photo" src="assets/img/headshot.webp"
+           alt="Portrait of Austin Li" width="1100" height="1375" fetchpriority="high">
+      <div>
+        <h1 class="hero__title">Hi, I&rsquo;m Austin Li</h1>
+        <p class="hero__lede">Waterloo Mechatronics Engineering student, curious to learn how things work, passionate to make them better.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" data-rail-section aria-labelledby="projects-heading">
+    <div class="rail" aria-hidden="true">
+      <div class="rail__track"></div>
+      <div class="rail__fill"></div>
+    </div>
+
+    <div class="col projects__head reveal">
+      <h2 id="projects-heading">PROJECTS</h2>
+    </div>
+
+  <article class="project" data-project data-project-no="01" id="pmsm-hub-motor">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 01</p>
+      <h2 class="project__title">PMSM OneWheel Hub Motor</h2>
+    </div>
+    <div class="col">
+    <figure class="">
+      <img src="assets/img/p1-cover.webp" alt="Hand-wound stator of the PMSM hub motor" width="1720" height="1075" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>I have always been intrigued by motors (electric motors in particular), the ability to turn electricity into motion seems magical, and yet the way motors are so ubiquitous today turn them into this seemingly simple thing which we take for granted. Motors are literally everywhere, everything from linear motion to water-pumps and turbines often start as rotation driven by motors, and without them the world would be a much more stationary place (you could almost say motors make the world turn&hellip;).</p>
+    <p class="lead">I wanted to know how motors work, so I set out to build one entirely from scratch. Everything from the stator windings to the magnetic rotor I specced, designed, and built. Moreover, the motor I&rsquo;m building is designed specifically for Field Oriented Control, meaning the need for a built-in magnetic encoder for rotor angle, and large arc magnets for a sinusoidal back-EMF profile.</p>
+    <p>Being a personal project, much of this build was constrained by budgets, but through various attempts to compromise and de-scope, I was able to assemble a first prototype which is currently being tested. The ultimate goal of this project is to use the motor in a larger DIY OneWheel build which has been a dream of mine for a while.</p>
+    <h3 class="section-title">Design</h3>
+    <p>I began by defining my constraints then modeled everything in SolidWorks, since this first prototype would be largely 3D printed, everything was designed with a heavy focus on DFM for FDM printing.</p>
+    <div class="media-pair">
+    <figure class="">
+      <img src="assets/img/p1-cad-section.webp" alt="Section view of the hub motor assembly in SolidWorks" width="1100" height="733" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p1-cad-exploded.webp" alt="Exploded view of the hub motor assembly" width="1100" height="733" loading="lazy" decoding="async">
+    </figure>
+    </div>
+    <figure class="">
+      <img src="assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1500" height="1125" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Field Oriented Control</h3>
+    <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
+    <p>Finding a place to put a magnetic encoder proved difficult because it meant needing to split the shaft to make the encoder concentric with the motor, however, supporting the stator from only one end would severely compromise its rigidity which is a concern as it experiences extreme magnetic forces.</p>
+    <p>I designed a way to place the encoder inside the shaft by splitting the shaft and decoupling it from the rotor using bearings.</p>
+    <div class="media-pair">
+    <figure class="">
+      <img src="assets/img/p1-encoder-original.webp" alt="Original encoder layout, stator supported from one end only" width="950" height="757" loading="lazy" decoding="async">
+      <figcaption>Original design &mdash; making the encoder concentric meant supporting the stator from a single end.</figcaption>
+    </figure>
+    <figure class="">
+      <img src="assets/img/p1-encoder-new.webp" alt="Revised layout with a split shaft and the encoder carried inside it" width="950" height="754" loading="lazy" decoding="async">
+      <figcaption>New design &mdash; the shaft is split and decoupled from the rotor by bearings, with the encoder living inside.</figcaption>
+    </figure>
+    </div>
+    <p>Wide angle arc magnets are vital for creating a sinusoidal back-EMF profile. However, large arc magnets are hard to find in the proper dimensions, which makes custom ordering the only option, but this obviously greatly exceeds my budget for this project.</p>
+    <p>To compromise, I approximated arc magnets using smaller block magnets placed adjacently. Block magnets are much cheaper.</p>
+    <p>I validated that this works by using magnetic sensitive sheets to visualize the magnetic fields, and indeed the magnetic field appeared uniform in the regions they should be.</p>
+    <figure class="">
+      <img src="assets/img/p1-rotor.webp" alt="Rotor with block magnets arranged to approximate wide arc magnets" width="1200" height="1600" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p1-magfield.webp" alt="Magnetic viewing film held against the rotor to check field uniformity" width="1100" height="985" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Back-EMF Validation</h3>
+    <p>Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc cogging with the stator.</p>
+    <figure class="">
+      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+             poster="assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
+        <source src="assets/video/backemf-validation.mp4" type="video/mp4">
+        <source src="assets/video/backemf-validation.webm" type="video/webm">
+      </video>
+    </figure>
+    <figure class="">
+      <img src="assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="960" height="720" loading="lazy" decoding="async">
+    </figure>
+    </div>
+  </article>
+  <article class="project" data-project data-project-no="02" id="forc-speed-controller">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 02</p>
+      <h2 class="project__title">FORC Speed Controller</h2>
+    </div>
+    <div class="col">
+    <figure class="">
+      <img src="assets/img/p2-cover.webp" alt="3D render of the FORC speed controller PCB" width="1320" height="813" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>Before starting this project, I had no experience in PCB design, at all. I had never touched a PCB software nor taken any advanced circuits courses. However, knowing how universal the applications of printed circuit boards are, I wanted to learn the process of how they are designed.</p>
+    <p class="lead">So, I designed FORC, my attempt at a high-power ESC specifically designed for Field Oriented Control. The software I used was Altium, which I chose over other beginner friendly choices like KiCad because it is more of an industry standard. My design is based on the Vedder ESC architecture, which is the gold standard for speed controllers in the application I am looking for.</p>
+    <p>The ultimate goal of FORC is to use it to drive my DIY OneWheel build, which is why it required specific components like an IMU and FSR sensor.</p>
+    <figure class="">
+      <img src="assets/img/p2-top.webp" alt="Top-down render of the FORC board showing the power stage and connectors" width="1400" height="758" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p2-layout.webp" alt="Altium board layout of FORC with copper pours and routing visible" width="1680" height="806" loading="lazy" decoding="async">
+    </figure>
+    </div>
+  </article>
+  <article class="project" data-project data-project-no="03" id="pool-robot">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 03</p>
+      <h2 class="project__title">Autonomous Pool-Playing Robot</h2>
+    </div>
+    <div class="col">
+    <div class="media-pair">
+    <figure class="">
+      <img src="assets/img/p3-cover.webp" alt="The autonomous pool-playing robot on the table" width="1100" height="825" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p3-team.webp" alt="The project team with the robot at the pool table" width="1400" height="1050" loading="lazy" decoding="async">
+    </figure>
+    </div>
+    <h3 class="section-title">Objective</h3>
+    <p>The Autonomous Pool-Playing Robot was built as a group project for my final Mechatronics Project of first year. The robot was built around standard VEX components, and our goal was to push these components to the limits of their capabilities.</p>
+    <p class="lead">My group and I designed, coded and tested an omni-directional robot which could successfully locate and strike a pool ball into a pocket.</p>
+    <p>My contribution to this project was in the mechanical design of the striking mechanism and the ball detection algorithm I wrote in C++.</p>
+    <h3 class="section-title">Ball Detection Algorithm</h3>
+    <p>The ball detection algorithm was constrained by a single laser distance sensor which forced out-of-the-box thinking to be able to locate the ball. To achieve both efficiency and accuracy, I split the algorithm into two parts:</p>
+    <div class="steps">
+      <div class="step">
+        <p class="step__no">Step 1:</p>
+        <p>The robot does a rotating pass across the whole table. By using the robots current position and the dimensions of the table, the theoretical wall distance could be calculated and compared to the laser sensor data. Any large discrepancies between the theoretical and measured distance was flagged as a ball.</p>
+    <figure class="">
+      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+             poster="assets/img/poster-pool-general-scan.webp" aria-label="The robot performing a rotating scan of the whole table">
+        <source src="assets/video/pool-general-scan.mp4" type="video/mp4">
+        <source src="assets/video/pool-general-scan.webm" type="video/webm">
+      </video>
+    </figure>
+      </div>
+      <div class="step">
+        <p class="step__no">Step 2:</p>
+        <p>After finding the rough direction of the ball, the robot does a slower scan to detect the outer edges of the ball, from these two edges, the robot can align itself with the exact center of the ball.</p>
+    <figure class="">
+      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+             poster="assets/img/poster-pool-ball-centering.webp" aria-label="The robot scanning slowly to find both edges of the ball and centre on it">
+        <source src="assets/video/pool-ball-centering.mp4" type="video/mp4">
+        <source src="assets/video/pool-ball-centering.webm" type="video/webm">
+      </video>
+    </figure>
+      </div>
+    </div>
+    <h3 class="section-title">Striking Mechanism</h3>
+    <p>After many revisions, the final design I settled on used a scissor mechanism to ensure the front face stayed perpendicular with the forward direction.</p>
+    <div class="media-pair">
+    <figure class="">
+      <img src="assets/img/p3-strike-detail.webp" alt="Close-up of the scissor linkage driving the striking face" width="1200" height="900" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p3-strike-full.webp" alt="The complete robot showing the striking face extended" width="1200" height="900" loading="lazy" decoding="async">
+    </figure>
+    </div>
+    <h3 class="section-title">Full Video Demo</h3>
+    <figure class="">
+      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+             poster="assets/img/poster-pool-full-demo.webp" aria-label="Full demonstration of the robot locating and striking the ball into a pocket">
+        <source src="assets/video/pool-full-demo.mp4" type="video/mp4">
+        <source src="assets/video/pool-full-demo.webm" type="video/webm">
+      </video>
+    </figure>
+    </div>
+  </article>
+  <article class="project" data-project data-project-no="04" id="autocleat">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 04</p>
+      <h2 class="project__title">AutoCleat</h2>
+    </div>
+    <div class="col">
+    <figure class="">
+      <img src="assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1400" height="1050" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>AutoCleat is a shoe attachment that automatically deploys ice spikes when winter surfaces become unsafe. It was designed to solve the awkwardness of traditional cleats, which work outdoors but become inconvenient or damaging when walking indoors.</p>
+    <p>AutoCleat was built in 24 hours as a submission to the Waterloo Enghacks Hackathon.</p>
+    <div class="media-pair">
+    <figure class="">
+      <img src="assets/img/p4-shoe-side.webp" alt="Side view of the AutoCleat frame strapped to a shoe" width="1100" height="1467" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p4-shoe-worn.webp" alt="AutoCleat being worn, with wiring to the ankle-mounted controller" width="1100" height="1467" loading="lazy" decoding="async">
+    </figure>
+    </div>
+    <figure class="">
+      <img src="assets/img/p4-prototype.webp" alt="The AutoCleat prototype and its ankle cuff on the bench" width="1400" height="1050" loading="lazy" decoding="async">
+    </figure>
+    <p>The prototype uses temperature sensing to detect icy conditions and an ultrasonic foot-lift sensor to deploy TPU spikes only when the foot is raised. The spikes retract on safe surfaces, giving the user hands-free traction control without stopping, bending down, or manually switching modes.</p>
+    <figure class="">
+      <video data-autoplay muted loop playsinline preload="none" width="1080" height="1080"
+             poster="assets/img/poster-autocleat-demo.webp" aria-label="AutoCleat deploying and retracting its spikes on demand">
+        <source src="assets/video/autocleat-demo.mp4" type="video/mp4">
+        <source src="assets/video/autocleat-demo.webm" type="video/webm">
+      </video>
+    </figure>
+    </div>
+  </article>
+  <article class="project" data-project data-project-no="05" id="cycloidal-gearbox">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 05</p>
+      <h2 class="project__title">Cycloidal Gearbox for Robotic Joints</h2>
+    </div>
+    <div class="col">
+    <figure class="">
+      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1300" height="975" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>This cycloidal gearbox was designed to be a compact reducer for use in robotic joints. The final dimensions measure 22mm in thickness.</p>
+    <figure class="">
+      <img src="assets/img/p5-photo-b.webp" alt="Top view of the assembled cycloidal gearbox showing its low profile" width="1300" height="975" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p5-exploded.webp" alt="Exploded CAD view of the cycloidal gearbox internals" width="991" height="1131" loading="lazy" decoding="async">
+    </figure>
+    </div>
+  </article>
+  <article class="project" data-project data-project-no="06" id="rocket-trailer">
+    <div class="col project__head">
+      <p class="project__eyebrow">Project 06</p>
+      <h2 class="project__title">Rocket Transport Trailer CAD</h2>
+    </div>
+    <div class="col">
+    <figure class="">
+      <img src="assets/img/p6-cover.webp" alt="CAD render of the rocket transport trailer deck and rails" width="1720" height="755" loading="lazy" decoding="async">
+    </figure>
+    <h3 class="section-title">Objective</h3>
+    <p>I created an accurate model of a transport trailer in CAD (SolidWorks) which proved to be mission critical for designing fixtures to transport the Team&rsquo;s rocket to the launch site.</p>
+    <figure class="">
+      <img src="assets/img/p6-cad-iso.webp" alt="Isometric CAD view of the complete trailer model" width="1290" height="644" loading="lazy" decoding="async">
+    </figure>
+    <div class="media-stack">
+    <figure class="">
+      <img src="assets/img/p6-real.webp" alt="Photograph of the real transport trailer" width="1600" height="900" loading="lazy" decoding="async">
+    </figure>
+    <figure class="">
+      <img src="assets/img/p6-cad-side.webp" alt="Side elevation of the CAD trailer model for comparison" width="1720" height="481" loading="lazy" decoding="async">
+    </figure>
+    </div>
+    <h3 class="section-title">Explore the model</h3>
+    <figure>
+      <div class="cad" data-model="assets/model/trailer.glb">
+        <canvas class="cad__stage"></canvas>
+        <div class="cad__status">Loading model&hellip;</div>
+        <div class="cad__hint">Drag to orbit &middot; scroll to zoom</div>
+        <button type="button" class="cad__reset">Reset view</button>
+      </div>
+      <figcaption>The SolidWorks assembly, tessellated straight from its STEP file &mdash; drag to orbit, scroll to zoom, shift-drag to pan.</figcaption>
+    </figure>
+    </div>
+  </article>
+  </section>
+</main>
+
+<button type="button" class="skip-next" aria-label="Skip to the next project">
+  <span>skip to the next project</span>
+  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+    <path d="M6.5 1v10M2.5 7.2l4 4 4-4" stroke="currentColor" stroke-width="1.4"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span>&copy; 2026 Austin Li</span>
+    <nav aria-label="Elsewhere">
+      <a href="gallery.html">Projects gallery</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/austin-c-li/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/austinnnli" target="_blank" rel="noopener">Github</a>
+      <a href="mailto:austincheungli@gmail.com">Email</a>
+    </nav>
+  </div>
+</footer>
+<div class="modal" id="contact-modal" role="dialog" aria-modal="true"
+     aria-labelledby="contact-title" aria-hidden="true">
+  <div class="modal__scrim" data-contact-close></div>
+  <div class="modal__panel">
+    <button type="button" class="modal__close" data-contact-close aria-label="Close">&#10005;</button>
+    <h2 class="modal__title" id="contact-title">Contact me</h2>
+    <div class="modal__rows">
+      <div class="modal__row">
+        <span class="modal__key">Email</span>
+        <a class="modal__val" href="mailto:austincheungli@gmail.com">austincheungli@gmail.com</a>
+      </div>
+      <div class="modal__row">
+        <span class="modal__key">Phone</span>
+        <a class="modal__val" href="tel:+12368382903">236-838-2903</a>
+      </div>
+    </div>
+    <p class="modal__note">I am currently open to Winter/Spring 2027 co-op opportunities, contact me so we can work together.</p>
+  </div>
+</div>
+</body>
+</html>
