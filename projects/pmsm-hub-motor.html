@@ -69,7 +69,7 @@
     </figure>
     </div>
     <figure class="">
-      <img src="../assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1500" height="1125" loading="lazy" decoding="async">
+      <img src="../assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
@@ -88,24 +88,28 @@
     <p>Wide angle arc magnets are vital for creating a sinusoidal back-EMF profile. However, large arc magnets are hard to find in the proper dimensions, which makes custom ordering the only option, but this obviously greatly exceeds my budget for this project.</p>
     <p>To compromise, I approximated arc magnets using smaller block magnets placed adjacently. Block magnets are much cheaper.</p>
     <p>I validated that this works by using magnetic sensitive sheets to visualize the magnetic fields, and indeed the magnetic field appeared uniform in the regions they should be.</p>
+    <div class="media-pair">
     <figure class="">
-      <img src="../assets/img/p1-rotor.webp" alt="Rotor with block magnets arranged to approximate wide arc magnets" width="1200" height="1600" loading="lazy" decoding="async">
+      <img src="../assets/img/p1-rotor.webp" alt="Rotor with block magnets arranged to approximate wide arc magnets" width="1000" height="1000" loading="lazy" decoding="async">
     </figure>
     <figure class="">
-      <img src="../assets/img/p1-magfield.webp" alt="Magnetic viewing film held against the rotor to check field uniformity" width="1100" height="985" loading="lazy" decoding="async">
+      <img src="../assets/img/p1-magfield.webp" alt="Magnetic viewing film held against the rotor to check field uniformity" width="1000" height="1000" loading="lazy" decoding="async">
     </figure>
+    </div>
     <h3 class="section-title">Back-EMF Validation</h3>
     <p>Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc cogging with the stator.</p>
+    <div class="media-pair">
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="../assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
-        <source src="../assets/video/backemf-validation.mp4" type="video/mp4">
-        <source src="../assets/video/backemf-validation.webm" type="video/webm">
-      </video>
+               poster="../assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
+          <source src="../assets/video/backemf-validation.mp4" type="video/mp4">
+          <source src="../assets/video/backemf-validation.webm" type="video/webm">
+        </video>
     </figure>
     <figure class="">
-      <img src="../assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="960" height="720" loading="lazy" decoding="async">
+      <img src="../assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="1100" height="618" loading="lazy" decoding="async">
     </figure>
+    </div>
       </div>
     </article>
   </section>

@@ -52,7 +52,7 @@
       </div>
       <div class="col">
     <figure class="">
-      <img src="../assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1400" height="1050" loading="lazy" decoding="async">
+      <img src="../assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <h3 class="section-title">Objective</h3>
     <p>AutoCleat is a shoe attachment that automatically deploys ice spikes when winter surfaces become unsafe. It was designed to solve the awkwardness of traditional cleats, which work outdoors but become inconvenient or damaging when walking indoors.</p>
@@ -70,11 +70,19 @@
     </figure>
     <p>The prototype uses temperature sensing to detect icy conditions and an ultrasonic foot-lift sensor to deploy TPU spikes only when the foot is raised. The spikes retract on safe surfaces, giving the user hands-free traction control without stopping, bending down, or manually switching modes.</p>
     <figure class="">
-      <video data-autoplay muted loop playsinline preload="none" width="1080" height="1080"
-             poster="../assets/img/poster-autocleat-demo.webp" aria-label="AutoCleat deploying and retracting its spikes on demand">
-        <source src="../assets/video/autocleat-demo.mp4" type="video/mp4">
-        <source src="../assets/video/autocleat-demo.webm" type="video/webm">
-      </video>
+      <div class="video-wrap">
+        <video data-autoplay muted loop playsinline preload="none" width="1080" height="1080"
+               poster="../assets/img/poster-autocleat-demo.webp" aria-label="AutoCleat deploying and retracting its spikes on demand">
+          <source src="../assets/video/autocleat-demo.mp4" type="video/mp4">
+          <source src="../assets/video/autocleat-demo.webm" type="video/webm">
+        </video>
+        <button type="button" class="video-replay" data-replay>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Replay
+        </button>
+      </div>
     </figure>
       </div>
     </article>

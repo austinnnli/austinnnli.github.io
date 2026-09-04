@@ -229,6 +229,22 @@
     });
   });
 
+  /* ---------------------------------------------------- replay a video */
+  (function replay() {
+    $$('[data-replay]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var wrap = btn.closest('.video-wrap');
+        var v = wrap && wrap.querySelector('video');
+        if (!v) return;
+        try { v.currentTime = 0; } catch (e) {}
+        var pr = v.play();
+        if (pr && pr.catch) pr.catch(function () {});
+        btn.classList.add('is-spun');
+        setTimeout(function () { btn.classList.remove('is-spun'); }, 520);
+      });
+    });
+  })();
+
   /* ---------------------------------------------------- lazy video play */
   (function videos() {
     var vids = $$('video[data-autoplay]');

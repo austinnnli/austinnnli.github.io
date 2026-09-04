@@ -207,10 +207,12 @@ img, video, canvas { display: block; max-width: 100%; height: auto; }
   text-wrap: balance;
 }
 .hero__lede {
-  margin-top: clamp(20px, 2.6vw, 34px);
+  margin: clamp(20px, 2.6vw, 34px) auto 0;
   font-size: clamp(1rem, 1.35vw, 1.16rem);
   line-height: 1.7;
-  max-width: 30em;
+  max-width: 32em;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 /* ------------------------------------------------------------ reveal */
@@ -364,6 +366,44 @@ figcaption {
 .media-pair figure { margin: 0; }
 
 .media-stack { display: grid; gap: clamp(16px, 2.4vw, 26px); }
+
+/* --- replay control on a looping video --------------------- */
+
+.video-wrap { position: relative; }
+.video-replay {
+  position: absolute;
+  right: 12px; bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgba(241,238,235,.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease),
+              color .3s var(--ease), border-color .3s var(--ease);
+}
+.video-wrap:hover .video-replay,
+.video-replay:focus-visible { opacity: 1; transform: none; }
+.video-replay:hover { color: var(--head); border-color: rgba(22,122,204,.5); }
+.video-replay svg { flex: none; transition: transform .5s var(--ease); }
+.video-replay:hover svg { transform: rotate(-180deg); }
+.video-replay.is-spun svg { transform: rotate(-360deg); }
+
+/* touch devices have no hover — keep it visible there */
+@media (hover: none) {
+  .video-replay { opacity: 1; transform: none; }
+}
 
 .steps {
   display: grid;

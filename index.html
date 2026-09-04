@@ -85,7 +85,7 @@
     </figure>
     </div>
     <figure class="">
-      <img src="assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1500" height="1125" loading="lazy" decoding="async">
+      <img src="assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
@@ -104,24 +104,28 @@
     <p>Wide angle arc magnets are vital for creating a sinusoidal back-EMF profile. However, large arc magnets are hard to find in the proper dimensions, which makes custom ordering the only option, but this obviously greatly exceeds my budget for this project.</p>
     <p>To compromise, I approximated arc magnets using smaller block magnets placed adjacently. Block magnets are much cheaper.</p>
     <p>I validated that this works by using magnetic sensitive sheets to visualize the magnetic fields, and indeed the magnetic field appeared uniform in the regions they should be.</p>
+    <div class="media-pair">
     <figure class="">
-      <img src="assets/img/p1-rotor.webp" alt="Rotor with block magnets arranged to approximate wide arc magnets" width="1200" height="1600" loading="lazy" decoding="async">
+      <img src="assets/img/p1-rotor.webp" alt="Rotor with block magnets arranged to approximate wide arc magnets" width="1000" height="1000" loading="lazy" decoding="async">
     </figure>
     <figure class="">
-      <img src="assets/img/p1-magfield.webp" alt="Magnetic viewing film held against the rotor to check field uniformity" width="1100" height="985" loading="lazy" decoding="async">
+      <img src="assets/img/p1-magfield.webp" alt="Magnetic viewing film held against the rotor to check field uniformity" width="1000" height="1000" loading="lazy" decoding="async">
     </figure>
+    </div>
     <h3 class="section-title">Back-EMF Validation</h3>
     <p>Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc cogging with the stator.</p>
+    <div class="media-pair">
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
-        <source src="assets/video/backemf-validation.mp4" type="video/mp4">
-        <source src="assets/video/backemf-validation.webm" type="video/webm">
-      </video>
+               poster="assets/img/poster-backemf-validation.webp" aria-label="Back-EMF measured on an oscilloscope while the motor is spun by hand">
+          <source src="assets/video/backemf-validation.mp4" type="video/mp4">
+          <source src="assets/video/backemf-validation.webm" type="video/webm">
+        </video>
     </figure>
     <figure class="">
-      <img src="assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="960" height="720" loading="lazy" decoding="async">
+      <img src="assets/img/p1-scope.webp" alt="Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes" width="1100" height="618" loading="lazy" decoding="async">
     </figure>
+    </div>
     </div>
   </article>
   <article class="project" data-project data-project-no="02" id="forc-speed-controller">
@@ -171,10 +175,10 @@
         <p>The robot does a rotating pass across the whole table. By using the robots current position and the dimensions of the table, the theoretical wall distance could be calculated and compared to the laser sensor data. Any large discrepancies between the theoretical and measured distance was flagged as a ball.</p>
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="assets/img/poster-pool-general-scan.webp" aria-label="The robot performing a rotating scan of the whole table">
-        <source src="assets/video/pool-general-scan.mp4" type="video/mp4">
-        <source src="assets/video/pool-general-scan.webm" type="video/webm">
-      </video>
+               poster="assets/img/poster-pool-general-scan.webp" aria-label="The robot performing a rotating scan of the whole table">
+          <source src="assets/video/pool-general-scan.mp4" type="video/mp4">
+          <source src="assets/video/pool-general-scan.webm" type="video/webm">
+        </video>
     </figure>
       </div>
       <div class="step">
@@ -182,10 +186,10 @@
         <p>After finding the rough direction of the ball, the robot does a slower scan to detect the outer edges of the ball, from these two edges, the robot can align itself with the exact center of the ball.</p>
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="assets/img/poster-pool-ball-centering.webp" aria-label="The robot scanning slowly to find both edges of the ball and centre on it">
-        <source src="assets/video/pool-ball-centering.mp4" type="video/mp4">
-        <source src="assets/video/pool-ball-centering.webm" type="video/webm">
-      </video>
+               poster="assets/img/poster-pool-ball-centering.webp" aria-label="The robot scanning slowly to find both edges of the ball and centre on it">
+          <source src="assets/video/pool-ball-centering.mp4" type="video/mp4">
+          <source src="assets/video/pool-ball-centering.webm" type="video/webm">
+        </video>
     </figure>
       </div>
     </div>
@@ -201,11 +205,19 @@
     </div>
     <h3 class="section-title">Full Video Demo</h3>
     <figure class="">
-      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="assets/img/poster-pool-full-demo.webp" aria-label="Full demonstration of the robot locating and striking the ball into a pocket">
-        <source src="assets/video/pool-full-demo.mp4" type="video/mp4">
-        <source src="assets/video/pool-full-demo.webm" type="video/webm">
-      </video>
+      <div class="video-wrap">
+        <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+               poster="assets/img/poster-pool-full-demo.webp" aria-label="Full demonstration of the robot locating and striking the ball into a pocket">
+          <source src="assets/video/pool-full-demo.mp4" type="video/mp4">
+          <source src="assets/video/pool-full-demo.webm" type="video/webm">
+        </video>
+        <button type="button" class="video-replay" data-replay>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Replay
+        </button>
+      </div>
     </figure>
     </div>
   </article>
@@ -216,7 +228,7 @@
     </div>
     <div class="col">
     <figure class="">
-      <img src="assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1400" height="1050" loading="lazy" decoding="async">
+      <img src="assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <h3 class="section-title">Objective</h3>
     <p>AutoCleat is a shoe attachment that automatically deploys ice spikes when winter surfaces become unsafe. It was designed to solve the awkwardness of traditional cleats, which work outdoors but become inconvenient or damaging when walking indoors.</p>
@@ -234,11 +246,19 @@
     </figure>
     <p>The prototype uses temperature sensing to detect icy conditions and an ultrasonic foot-lift sensor to deploy TPU spikes only when the foot is raised. The spikes retract on safe surfaces, giving the user hands-free traction control without stopping, bending down, or manually switching modes.</p>
     <figure class="">
-      <video data-autoplay muted loop playsinline preload="none" width="1080" height="1080"
-             poster="assets/img/poster-autocleat-demo.webp" aria-label="AutoCleat deploying and retracting its spikes on demand">
-        <source src="assets/video/autocleat-demo.mp4" type="video/mp4">
-        <source src="assets/video/autocleat-demo.webm" type="video/webm">
-      </video>
+      <div class="video-wrap">
+        <video data-autoplay muted loop playsinline preload="none" width="1080" height="1080"
+               poster="assets/img/poster-autocleat-demo.webp" aria-label="AutoCleat deploying and retracting its spikes on demand">
+          <source src="assets/video/autocleat-demo.mp4" type="video/mp4">
+          <source src="assets/video/autocleat-demo.webm" type="video/webm">
+        </video>
+        <button type="button" class="video-replay" data-replay>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Replay
+        </button>
+      </div>
     </figure>
     </div>
   </article>
@@ -249,16 +269,18 @@
     </div>
     <div class="col">
     <figure class="">
-      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1300" height="975" loading="lazy" decoding="async">
+      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <h3 class="section-title">Objective</h3>
     <p>This cycloidal gearbox was designed to be a compact reducer for use in robotic joints. The final dimensions measure 22mm in thickness.</p>
+    <div class="media-pair">
     <figure class="">
-      <img src="assets/img/p5-photo-b.webp" alt="Top view of the assembled cycloidal gearbox showing its low profile" width="1300" height="975" loading="lazy" decoding="async">
+      <img src="assets/img/p5-photo-b.webp" alt="Top view of the assembled cycloidal gearbox showing its low profile" width="1200" height="900" loading="lazy" decoding="async">
     </figure>
     <figure class="">
-      <img src="assets/img/p5-exploded.webp" alt="Exploded CAD view of the cycloidal gearbox internals" width="991" height="1131" loading="lazy" decoding="async">
+      <img src="assets/img/p5-exploded.webp" alt="Exploded CAD view of the cycloidal gearbox internals" width="1200" height="900" loading="lazy" decoding="async">
     </figure>
+    </div>
     </div>
   </article>
   <article class="project" data-project data-project-no="06" id="rocket-trailer">
@@ -291,7 +313,6 @@
         <div class="cad__hint">Drag to orbit &middot; scroll to zoom</div>
         <button type="button" class="cad__reset">Reset view</button>
       </div>
-      <figcaption>The SolidWorks assembly, tessellated straight from its STEP file &mdash; drag to orbit, scroll to zoom, shift-drag to pan.</figcaption>
     </figure>
     </div>
   </article>

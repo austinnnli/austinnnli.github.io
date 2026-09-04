@@ -48,8 +48,9 @@ def img(src, alt, cap=None):
     return {'k': 'img', 'src': src, 'alt': alt, 'cap': cap}
 def pair(a, b):  return {'k': 'pair', 'items': [a, b]}
 def stack(*it):  return {'k': 'stack', 'items': list(it)}
-def video(src, poster, alt, cap=None):
-    return {'k': 'video', 'src': src, 'poster': poster, 'alt': alt, 'cap': cap}
+def video(src, poster, alt, cap=None, replay=False):
+    return {'k': 'video', 'src': src, 'poster': poster, 'alt': alt, 'cap': cap,
+            'replay': replay}
 def steps(a, b): return {'k': 'steps', 'items': [a, b]}
 def cad(model, cap=None):
     return {'k': 'cad', 'model': model, 'cap': cap}
@@ -112,15 +113,17 @@ PROJECTS = [
       'Block magnets are much cheaper.'),
     p('I validated that this works by using magnetic sensitive sheets to visualize the magnetic '
       'fields, and indeed the magnetic field appeared uniform in the regions they should be.'),
-    img('p1-rotor', 'Rotor with block magnets arranged to approximate wide arc magnets'),
-    img('p1-magfield', 'Magnetic viewing film held against the rotor to check field uniformity'),
+    pair(img('p1-rotor', 'Rotor with block magnets arranged to approximate wide arc magnets'),
+         img('p1-magfield', 'Magnetic viewing film held against the rotor to check field uniformity')),
 
     h('Back-EMF Validation'),
     p('Using an oscilloscope I could verify that the back-EMF from spinning the motor was roughly '
       'sinusoidal. The 6 spikes seen can be attributed to the 6 individual magnets in each arc '
       'cogging with the stator.'),
-    video('backemf-validation', 'poster-backemf-validation', 'Back-EMF measured on an oscilloscope while the motor is spun by hand'),
-    img('p1-scope', 'Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes'),
+    pair(video('backemf-validation', 'poster-backemf-validation',
+               'Back-EMF measured on an oscilloscope while the motor is spun by hand'),
+         img('p1-scope',
+             'Oscilloscope trace showing a roughly sinusoidal back-EMF with six cogging spikes')),
   ],
 },
 {
@@ -194,7 +197,8 @@ PROJECTS = [
 
     h('Full Video Demo'),
     video('pool-full-demo', 'poster-pool-full-demo',
-          'Full demonstration of the robot locating and striking the ball into a pocket'),
+          'Full demonstration of the robot locating and striking the ball into a pocket',
+          replay=True),
   ],
 },
 {
@@ -218,7 +222,8 @@ PROJECTS = [
       'sensor to deploy TPU spikes only when the foot is raised. The spikes retract on safe '
       'surfaces, giving the user hands-free traction control without stopping, bending down, or '
       'manually switching modes.'),
-    video('autocleat-demo', 'poster-autocleat-demo', 'AutoCleat deploying and retracting its spikes on demand'),
+    video('autocleat-demo', 'poster-autocleat-demo',
+          'AutoCleat deploying and retracting its spikes on demand', replay=True),
   ],
 },
 {
@@ -232,8 +237,8 @@ PROJECTS = [
     h('Objective'),
     p('This cycloidal gearbox was designed to be a compact reducer for use in robotic joints. '
       'The final dimensions measure 22mm in thickness.'),
-    img('p5-photo-b', 'Top view of the assembled cycloidal gearbox showing its low profile'),
-    img('p5-exploded', 'Exploded CAD view of the cycloidal gearbox internals'),
+    pair(img('p5-photo-b', 'Top view of the assembled cycloidal gearbox showing its low profile'),
+         img('p5-exploded', 'Exploded CAD view of the cycloidal gearbox internals')),
   ],
 },
 {
@@ -253,9 +258,7 @@ PROJECTS = [
     stack(img('p6-real', 'Photograph of the real transport trailer'),
           img('p6-cad-side', 'Side elevation of the CAD trailer model for comparison')),
     h('Explore the model'),
-    cad('assets/model/trailer.glb',
-        'The SolidWorks assembly, tessellated straight from its STEP file &mdash; drag to orbit, '
-        'scroll to zoom, shift-drag to pan.'),
+    cad('assets/model/trailer.glb'),
   ],
 },
 ]
@@ -272,15 +275,26 @@ def r_img(b, base, cls=''):
 
 def r_video(b, base, cls=''):
     cap = ('\n      <figcaption>%s</figcaption>' % b['cap']) if b.get('cap') else ''
-    return ('    <figure class="%s">\n'
-            '      <video data-autoplay muted loop playsinline preload="none"%s\n'
-            '             poster="%sassets/img/%s.webp" aria-label="%s">\n'
-            '        <source src="%sassets/video/%s.mp4" type="video/mp4">\n'
-            '        <source src="%sassets/video/%s.webm" type="video/webm">\n'
-            '      </video>%s\n'
-            '    </figure>' % (cls, dims(b['poster']), base, b['poster'],
-                               html.escape(b['alt'], quote=True), base, b['src'],
-                               base, b['src'], cap))
+    vid = ('<video data-autoplay muted loop playsinline preload="none"%s\n'
+           '               poster="%sassets/img/%s.webp" aria-label="%s">\n'
+           '          <source src="%sassets/video/%s.mp4" type="video/mp4">\n'
+           '          <source src="%sassets/video/%s.webm" type="video/webm">\n'
+           '        </video>' % (dims(b['poster']), base, b['poster'],
+                                 html.escape(b['alt'], quote=True),
+                                 base, b['src'], base, b['src']))
+    if b.get('replay'):
+        body = ('      <div class="video-wrap">\n'
+                '        %s\n'
+                '        <button type="button" class="video-replay" data-replay>\n'
+                '          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">\n'
+                '            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"\n'
+                '                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>\n'
+                '          </svg>Replay\n'
+                '        </button>\n'
+                '      </div>' % vid)
+    else:
+        body = '      %s' % vid
+    return '    <figure class="%s">\n%s%s\n    </figure>' % (cls, body, cap)
 
 def r_block(b, base):
     k = b['k']

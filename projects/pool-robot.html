@@ -71,10 +71,10 @@
         <p>The robot does a rotating pass across the whole table. By using the robots current position and the dimensions of the table, the theoretical wall distance could be calculated and compared to the laser sensor data. Any large discrepancies between the theoretical and measured distance was flagged as a ball.</p>
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="../assets/img/poster-pool-general-scan.webp" aria-label="The robot performing a rotating scan of the whole table">
-        <source src="../assets/video/pool-general-scan.mp4" type="video/mp4">
-        <source src="../assets/video/pool-general-scan.webm" type="video/webm">
-      </video>
+               poster="../assets/img/poster-pool-general-scan.webp" aria-label="The robot performing a rotating scan of the whole table">
+          <source src="../assets/video/pool-general-scan.mp4" type="video/mp4">
+          <source src="../assets/video/pool-general-scan.webm" type="video/webm">
+        </video>
     </figure>
       </div>
       <div class="step">
@@ -82,10 +82,10 @@
         <p>After finding the rough direction of the ball, the robot does a slower scan to detect the outer edges of the ball, from these two edges, the robot can align itself with the exact center of the ball.</p>
     <figure class="">
       <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="../assets/img/poster-pool-ball-centering.webp" aria-label="The robot scanning slowly to find both edges of the ball and centre on it">
-        <source src="../assets/video/pool-ball-centering.mp4" type="video/mp4">
-        <source src="../assets/video/pool-ball-centering.webm" type="video/webm">
-      </video>
+               poster="../assets/img/poster-pool-ball-centering.webp" aria-label="The robot scanning slowly to find both edges of the ball and centre on it">
+          <source src="../assets/video/pool-ball-centering.mp4" type="video/mp4">
+          <source src="../assets/video/pool-ball-centering.webm" type="video/webm">
+        </video>
     </figure>
       </div>
     </div>
@@ -101,11 +101,19 @@
     </div>
     <h3 class="section-title">Full Video Demo</h3>
     <figure class="">
-      <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
-             poster="../assets/img/poster-pool-full-demo.webp" aria-label="Full demonstration of the robot locating and striking the ball into a pocket">
-        <source src="../assets/video/pool-full-demo.mp4" type="video/mp4">
-        <source src="../assets/video/pool-full-demo.webm" type="video/webm">
-      </video>
+      <div class="video-wrap">
+        <video data-autoplay muted loop playsinline preload="none" width="1200" height="676"
+               poster="../assets/img/poster-pool-full-demo.webp" aria-label="Full demonstration of the robot locating and striking the ball into a pocket">
+          <source src="../assets/video/pool-full-demo.mp4" type="video/mp4">
+          <source src="../assets/video/pool-full-demo.webm" type="video/webm">
+        </video>
+        <button type="button" class="video-replay" data-replay>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Replay
+        </button>
+      </div>
     </figure>
       </div>
     </article>
