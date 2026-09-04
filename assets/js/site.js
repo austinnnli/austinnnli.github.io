@@ -205,11 +205,18 @@
       scrollToY(y);
     });
 
+    // only offer "skip to the next project" while an opened deep dive is
+    // actually on screen — otherwise the brief view needs no shortcut
     function skipVisibility() {
-      var r = section.getBoundingClientRect();
-      var inSection = r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.55;
-      skip.classList.toggle('is-shown', inSection && nextIndex() >= 0);
+      var openOnScreen = blocks.some(function (b) {
+        var d = b.querySelector('.deep');
+        if (!d || !d.classList.contains('is-open')) return false;
+        var r = d.getBoundingClientRect();
+        return r.bottom > 0 && r.top < window.innerHeight && r.height > 40;
+      });
+      skip.classList.toggle('is-shown', openOnScreen && nextIndex() >= 0);
     }
+    window.addEventListener('dive:toggle', skipVisibility);
     skipVisibility();
     window.addEventListener('scroll', skipVisibility, { passive: true });
     window.addEventListener('resize', skipVisibility);
@@ -240,7 +247,10 @@
       if ('inert' in d) d.inert = true;
     });
 
-    function settle() { window.dispatchEvent(new Event('resize')); }
+    function settle() {
+      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('dive:toggle'));
+    }
 
     function open(d, btn) {
       d.classList.add('is-open');
@@ -250,6 +260,7 @@
       d.style.height = d.scrollHeight + 'px';
       btn.setAttribute('aria-expanded', 'true');
       $('.dive__label', btn).textContent = 'show less';
+      window.dispatchEvent(new Event('dive:toggle'));
       var done = function (e) {
         if (e && e.propertyName !== 'height') return;
         d.removeEventListener('transitionend', done);
@@ -270,6 +281,7 @@
       if ('inert' in d) d.inert = true;
       btn.setAttribute('aria-expanded', 'false');
       $('.dive__label', btn).textContent = 'dive deeper';
+      window.dispatchEvent(new Event('dive:toggle'));
       setTimeout(settle, 760);
     }
 

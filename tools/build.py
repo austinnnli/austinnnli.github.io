@@ -65,7 +65,7 @@ def cad(model, cap=None):
 PROJECTS = [
 {
   'slug':  'pmsm-hub-motor',
-  'brief': "A permanent-magnet synchronous hub motor I built from scratch &mdash; stator, windings, rotor and magnets &mdash; designed specifically for field oriented control, and destined to drive a DIY OneWheel.",
+  'brief': "A permanent magnet hub motor I designed and built from scratch specifically for field oriented control. I did a custom distributed winding pattern around the stator according to my spec and validated a sinusoidal back-EMF profile using an oscilloscope.",
   'title': 'PMSM OneWheel Hub Motor',
   'blurb': 'A permanent-magnet synchronous hub motor designed and built from scratch, '
            'specced end to end for field oriented control.',
@@ -96,13 +96,11 @@ PROJECTS = [
       'for FDM printing.'),
     pair(img('p1-cad-section', 'Section view of the hub motor assembly in SolidWorks'),
          img('p1-cad-exploded', 'Exploded view of the hub motor assembly')),
-    img('p1-stator-housing', 'The wound stator seated in its printed housing'),
-    img('p1-winding',
-        'Winding diagram for the 36-slot stator: three phases distributed across the slots, '
-        'with the rotor magnet arcs shown on the outer ring',
-        'The winding layout I worked out for the 36-slot stator &mdash; three phases distributed '
-        'across the slots, with the rotor&rsquo;s magnet arcs on the outer ring.',
-        narrow=True),
+    row(img('p1-stator-housing', 'The wound stator seated in its printed housing'),
+        img('p1-winding',
+            'Winding diagram for the 36-slot stator: three phases distributed across the slots, '
+            'with the rotor magnet arcs shown on the outer ring',
+            'Distributed winding layout calculated for a 36-slot stator, 6-pole rotor.')),
 
     h('Field Oriented Control'),
     p('I wanted to use field oriented control (FOC) to drive this motor. This meant two things that '
@@ -141,7 +139,7 @@ PROJECTS = [
 },
 {
   'slug':  'forc-speed-controller',
-  'brief': "FORC is a high-power ESC for field oriented control, laid out in Altium around the Vedder architecture. It was my first PCB, taken from no experience at all to a finished board.",
+  'brief': "FORC is a high-power ESC for field oriented control, designed in Altium and based on the Vedder ESC architecture. It was my first PCB project, taken from no experience at all to a finished board in 4 months.",
   'title': 'FORC Speed Controller',
   'blurb': 'A high-power ESC built around the Vedder architecture &mdash; and a first '
            'attempt at PCB design, in Altium.',
@@ -167,7 +165,7 @@ PROJECTS = [
 },
 {
   'slug':  'pool-robot',
-  'brief': "An omni-directional VEX robot that locates a pool ball using a single laser distance sensor and strikes it into a pocket. I designed the scissor striking mechanism and wrote the ball detection algorithm in C++.",
+  'brief': "An omni-directional VEX robot that locates a pool ball using a laser distance sensor and strikes it into a pocket without user input.",
   'title': 'Autonomous Pool-Playing Robot',
   'blurb': 'An omni-directional VEX robot that finds a pool ball with one laser sensor '
            'and strikes it into a pocket.',
@@ -244,7 +242,7 @@ PROJECTS = [
 },
 {
   'slug':  'cycloidal-gearbox',
-  'brief': "A compact cycloidal reducer for robotic joints &mdash; a high reduction ratio packed into a package just 22&nbsp;mm thick.",
+  'brief': "A compact cycloidal reducer for use in humanoid robot joints. A high reduction ratio packed into a 22&nbsp;mm thick package.",
   'title': 'Cycloidal Gearbox for Robotic Joints',
   'blurb': 'A compact 22&nbsp;mm-thick cycloidal reducer designed for robotic joints.',
   'cover': 'cover-cycloid',
@@ -376,23 +374,25 @@ def project_body(pr, base, uid=''):
     if lead_html:
         out.append(lead_html)
     out.append("""    <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">%s</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="%s">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">%s</p>
     </div>
     <div class="deep" id="%s">
       <div class="deep__inner">
 %s
       </div>
-    </div>""" % (did, pr['brief'], did, deep_html))
+    </div>""" % (pr['brief'], did, did, deep_html))
     return '\n'.join(out)
 
 # --------------------------------------------------------------------------- #

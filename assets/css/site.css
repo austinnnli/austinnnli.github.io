@@ -365,7 +365,35 @@ figcaption {
 }
 .media-pair figure { margin: 0; }
 
-.media-stack { display: grid; gap: clamp(16px, 2.4vw, 26px); }
+/* stacked full-width media: tight, no stray figure margins */
+.media-stack {
+  display: grid;
+  gap: clamp(8px, 1vw, 14px);
+  margin: clamp(26px, 3.6vw, 42px) 0;
+}
+.media-stack figure { margin: 0; }
+
+/* --- Step 1 / Step 2, side by side ------------------------------------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3.5vw, 46px);
+  margin-top: clamp(24px, 3vw, 34px);
+}
+.step { display: flex; flex-direction: column; }
+.step figure { margin: clamp(18px, 2.4vw, 26px) 0 0; margin-top: auto; }
+.step > p:last-of-type { margin-bottom: 0; }
+.step__no {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--head);
+  text-align: left;
+  margin-bottom: .6em;
+}
+.step p { font-size: .98rem; }
 
 /* --- a row whose items keep their own aspect but share a height --------- */
 
@@ -384,53 +412,61 @@ figure.figure--narrow { margin-inline: auto; max-width: 640px; }
 
 /* --- "In Brief" + dive deeper ------------------------------------------ */
 
-.brief { margin-top: clamp(34px, 4.5vw, 54px); }
-.brief__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 18px 26px;
-  flex-wrap: wrap;
-  margin-bottom: 1em;
+.brief {
+  margin-top: clamp(34px, 4.5vw, 54px);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(22px, 3.5vw, 48px);
+  align-items: center;
 }
-.brief__head .section-title { margin: 0; }
+.brief__text .section-title { margin: 0 0 .75em; }
+.brief__action { display: flex; }
 
 .dive {
+  width: 100%;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 9px 18px;
-  border: 1px solid rgba(22,122,204,.32);
+  justify-content: center;
+  gap: 11px;
+  padding: 18px 24px;
+  border: 1px solid rgba(22,122,204,.34);
   border-radius: 999px;
   background: none;
   color: var(--text);
   font-family: var(--sans);
-  font-size: .8rem;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: .015em;
+  letter-spacing: .01em;
   cursor: pointer;
   white-space: nowrap;
   transition: color .3s var(--ease), border-color .3s var(--ease),
-              background-color .3s var(--ease);
+              background-color .3s var(--ease), transform .3s var(--ease);
 }
 .dive:hover {
   color: var(--head);
-  border-color: rgba(22,122,204,.65);
-  background: rgba(22,122,204,.05);
+  border-color: rgba(22,122,204,.7);
+  background: rgba(22,122,204,.06);
 }
+.dive:active { transform: scale(.985); }
 .dive svg { flex: none; transition: transform .5s var(--ease); }
 .dive[aria-expanded="true"] svg { transform: rotate(180deg); }
 
 .deep__inner { padding-top: clamp(10px, 1.6vw, 20px); }
 
-/* Collapsed only once JS is running, so the content is never trapped. */
+/* Collapsed only once JS is running, so the content is never trapped.
+   The inner block starts lifted and settles down as the panel grows, so the
+   reveal reads as a slide rather than a fade. */
 .js .deep {
   height: 0;
   overflow: hidden;
-  transition: height .72s var(--ease), opacity .5s var(--ease);
-  opacity: .35;
+  transition: height .8s var(--ease);
 }
-.js .deep.is-open { opacity: 1; }
+.js .deep .deep__inner {
+  transform: translateY(-46px);
+  opacity: 0;
+  transition: transform .8s var(--ease), opacity .5s var(--ease);
+}
+.js .deep.is-open .deep__inner { transform: none; opacity: 1; }
 .js .deep.is-done { height: auto; overflow: visible; }
 
 /* --- controls on a looping video ---------------------------- */
@@ -818,7 +854,7 @@ a.modal__val:hover { color: var(--accent); }
   .media-pair { grid-template-columns: 1fr; }
   .media-row { flex-direction: column; }
   .media-row__cell { flex: none !important; width: 100%; }
-  .brief__head { align-items: flex-start; }
+  .brief { grid-template-columns: 1fr; gap: 22px; }
   .skip-next { top: auto; bottom: 20px; right: 50%; transform: translate(50%, 20px) scale(.94); }
   .skip-next.is-shown { transform: translate(50%, 0) scale(1); }
   .modal__row { grid-template-columns: 1fr; gap: 2px; }
@@ -833,6 +869,7 @@ a.modal__val:hover { color: var(--accent); }
   .reveal, .project__title { opacity: 1 !important; transform: none !important; }
   .dot { transform: scale(1) !important; opacity: 1 !important; }
   .js .deep { transition: none; }
+  .js .deep .deep__inner { transform: none !important; opacity: 1 !important; }
 }
 
 @media print {

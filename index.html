@@ -72,17 +72,19 @@
       <img src="assets/img/p1-cover.webp" alt="Hand-wound stator of the PMSM hub motor" width="1720" height="1075" loading="lazy" decoding="async">
     </figure>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">A permanent magnet hub motor I designed and built from scratch specifically for field oriented control. I did a custom distributed winding pattern around the stator according to my spec and validated a sinusoidal back-EMF profile using an oscilloscope.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pmsm-hub-motor-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">A permanent-magnet synchronous hub motor I built from scratch &mdash; stator, windings, rotor and magnets &mdash; designed specifically for field oriented control, and destined to drive a DIY OneWheel.</p>
     </div>
     <div class="deep" id="deep-pmsm-hub-motor-main">
       <div class="deep__inner">
@@ -100,13 +102,19 @@
       <img src="assets/img/p1-cad-exploded.webp" alt="Exploded view of the hub motor assembly" width="1100" height="733" loading="lazy" decoding="async">
     </figure>
     </div>
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.7778 1 0">
     <figure class="">
       <img src="assets/img/p1-stator-housing.webp" alt="The wound stator seated in its printed housing" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
-    <figure class="figure--narrow">
+      </div>
+      <div class="media-row__cell" style="flex:0.9943 1 0">
+    <figure class="">
       <img src="assets/img/p1-winding.webp" alt="Winding diagram for the 36-slot stator: three phases distributed across the slots, with the rotor magnet arcs shown on the outer ring" width="701" height="705" loading="lazy" decoding="async">
-      <figcaption>The winding layout I worked out for the 36-slot stator &mdash; three phases distributed across the slots, with the rotor&rsquo;s magnet arcs on the outer ring.</figcaption>
+      <figcaption>Distributed winding layout calculated for a 36-slot stator, 6-pole rotor.</figcaption>
     </figure>
+      </div>
+    </div>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
     <p>Finding a place to put a magnetic encoder proved difficult because it meant needing to split the shaft to make the encoder concentric with the motor, however, supporting the stator from only one end would severely compromise its rigidity which is a concern as it experiences extreme magnetic forces.</p>
@@ -164,17 +172,19 @@
       <img src="assets/img/p2-cover.webp" alt="3D render of the FORC speed controller PCB" width="1320" height="813" loading="lazy" decoding="async">
     </figure>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">FORC is a high-power ESC for field oriented control, designed in Altium and based on the Vedder ESC architecture. It was my first PCB project, taken from no experience at all to a finished board in 4 months.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-forc-speed-controller-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">FORC is a high-power ESC for field oriented control, laid out in Altium around the Vedder architecture. It was my first PCB, taken from no experience at all to a finished board.</p>
     </div>
     <div class="deep" id="deep-forc-speed-controller-main">
       <div class="deep__inner">
@@ -207,17 +217,19 @@
     </figure>
     </div>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">An omni-directional VEX robot that locates a pool ball using a laser distance sensor and strikes it into a pocket without user input.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-pool-robot-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">An omni-directional VEX robot that locates a pool ball using a single laser distance sensor and strikes it into a pocket. I designed the scissor striking mechanism and wrote the ball detection algorithm in C++.</p>
     </div>
     <div class="deep" id="deep-pool-robot-main">
       <div class="deep__inner">
@@ -295,17 +307,19 @@
       <img src="assets/img/p4-cover.webp" alt="AutoCleat mounted on a shoe with its control electronics" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">A shoe attachment that deploys ice spikes when winter surfaces turn unsafe and retracts them indoors, so you never stop to change footwear. Built in 24 hours at Waterloo EngHacks.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-autocleat-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">A shoe attachment that deploys ice spikes when winter surfaces turn unsafe and retracts them indoors, so you never stop to change footwear. Built in 24 hours at Waterloo EngHacks.</p>
     </div>
     <div class="deep" id="deep-autocleat-main">
       <div class="deep__inner">
@@ -356,20 +370,22 @@
     </div>
     <div class="col">
     <figure class="">
-      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1600" height="1000" loading="lazy" decoding="async">
+      <img src="assets/img/p5-photo-a.webp" alt="The printed cycloidal gearbox with its output arm attached" width="1600" height="900" loading="lazy" decoding="async">
     </figure>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">A compact cycloidal reducer for use in humanoid robot joints. A high reduction ratio packed into a 22&nbsp;mm thick package.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-cycloidal-gearbox-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">A compact cycloidal reducer for robotic joints &mdash; a high reduction ratio packed into a package just 22&nbsp;mm thick.</p>
     </div>
     <div class="deep" id="deep-cycloidal-gearbox-main">
       <div class="deep__inner">
@@ -401,17 +417,19 @@
       <img src="assets/img/p6-cover.webp" alt="CAD render of the rocket transport trailer deck and rails" width="1720" height="755" loading="lazy" decoding="async">
     </figure>
     <div class="brief">
-      <div class="brief__head">
+      <div class="brief__text">
         <h3 class="section-title">In Brief</h3>
+        <p class="lead">An accurate SolidWorks model of the team&rsquo;s transport trailer, which became the reference every rocket transport fixture was designed against. The full assembly is explorable in 3D inside.</p>
+      </div>
+      <div class="brief__action">
         <button type="button" class="dive" data-dive aria-expanded="false" aria-controls="deep-rocket-trailer-main">
           <span class="dive__label">dive deeper</span>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1.6 4 6 8.4 10.4 4" stroke="currentColor" stroke-width="1.6"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <p class="lead">An accurate SolidWorks model of the team&rsquo;s transport trailer, which became the reference every rocket transport fixture was designed against. The full assembly is explorable in 3D inside.</p>
     </div>
     <div class="deep" id="deep-rocket-trailer-main">
       <div class="deep__inner">
