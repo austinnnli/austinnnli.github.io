@@ -102,6 +102,18 @@ PROJECTS = [
             'with the rotor magnet arcs shown on the outer ring',
             'Distributed winding layout calculated for a 36-slot stator, 6-pole rotor.')),
 
+    h('Simulation'),
+    p('I created a FEA software to simulate and visualize the magnet field produced by adjacent '
+      'block magnets. Using this software I proved that block magnets arranged in an arc can '
+      'create a good approximation of an arc magnet of the same size at close distances. In the '
+      'regions near the magnets the magnetic field is uniform as it should be.'),
+    row(img('p1-fea-arc',
+            'FEA field-line plot of block magnets arranged in an arc, showing the combined field '
+            'wrapping around the chain of magnets'),
+        img('p1-fea-ring',
+            'FEA vector and magnitude plot of a full ring of block magnets, with a uniform field '
+            'in the regions close to the magnets')),
+
     h('Field Oriented Control'),
     p('I wanted to use field oriented control (FOC) to drive this motor. This meant two things that '
       'needed to be different from a typical motor: encoder to detect position, and large arc '
@@ -513,7 +525,7 @@ def build_index():
   <section class="hero wrap">
     <div class="hero__grid reveal">
       <img class="hero__photo" src="assets/img/headshot.webp"
-           alt="Portrait of Austin Li" width="1100" height="1375" fetchpriority="high">
+           alt="Portrait of Austin Li" width="1100" height="1283" fetchpriority="high">
       <div>
         <h1 class="hero__title">Hi, I&rsquo;m Austin Li</h1>
         <p class="hero__lede">{SITE['lede']}</p>

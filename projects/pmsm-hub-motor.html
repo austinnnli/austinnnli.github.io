@@ -99,6 +99,20 @@
     </figure>
       </div>
     </div>
+    <h3 class="section-title">Simulation</h3>
+    <p>I created a FEA software to simulate and visualize the magnet field produced by adjacent block magnets. Using this software I proved that block magnets arranged in an arc can create a good approximation of an arc magnet of the same size at close distances. In the regions near the magnets the magnetic field is uniform as it should be.</p>
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.1684 1 0">
+    <figure class="">
+      <img src="../assets/img/p1-fea-arc.webp" alt="FEA field-line plot of block magnets arranged in an arc, showing the combined field wrapping around the chain of magnets" width="1311" height="1122" loading="lazy" decoding="async">
+    </figure>
+      </div>
+      <div class="media-row__cell" style="flex:1.3361 1 0">
+    <figure class="">
+      <img src="../assets/img/p1-fea-ring.webp" alt="FEA vector and magnitude plot of a full ring of block magnets, with a uniform field in the regions close to the magnets" width="1590" height="1190" loading="lazy" decoding="async">
+    </figure>
+      </div>
+    </div>
     <h3 class="section-title">Field Oriented Control</h3>
     <p>I wanted to use field oriented control (FOC) to drive this motor. This meant two things that needed to be different from a typical motor: encoder to detect position, and large arc magnets in the rotor.</p>
     <p>Finding a place to put a magnetic encoder proved difficult because it meant needing to split the shaft to make the encoder concentric with the motor, however, supporting the stator from only one end would severely compromise its rigidity which is a concern as it experiences extreme magnetic forces.</p>

@@ -193,7 +193,7 @@ img, video, canvas { display: block; max-width: 100%; height: auto; }
 }
 .hero__photo {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 6 / 7;
   object-fit: cover;
   border-radius: 3px;
   filter: saturate(.96);

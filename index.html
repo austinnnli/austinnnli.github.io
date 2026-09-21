@@ -44,7 +44,7 @@
   <section class="hero wrap">
     <div class="hero__grid reveal">
       <img class="hero__photo" src="assets/img/headshot.webp"
-           alt="Portrait of Austin Li" width="1100" height="1375" fetchpriority="high">
+           alt="Portrait of Austin Li" width="1100" height="1283" fetchpriority="high">
       <div>
         <h1 class="hero__title">Hi, I&rsquo;m Austin Li</h1>
         <p class="hero__lede">Waterloo Mechatronics Engineering student, curious to learn how things work, passionate to make them better.</p>
@@ -112,6 +112,20 @@
     <figure class="">
       <img src="assets/img/p1-winding.webp" alt="Winding diagram for the 36-slot stator: three phases distributed across the slots, with the rotor magnet arcs shown on the outer ring" width="701" height="705" loading="lazy" decoding="async">
       <figcaption>Distributed winding layout calculated for a 36-slot stator, 6-pole rotor.</figcaption>
+    </figure>
+      </div>
+    </div>
+    <h3 class="section-title">Simulation</h3>
+    <p>I created a FEA software to simulate and visualize the magnet field produced by adjacent block magnets. Using this software I proved that block magnets arranged in an arc can create a good approximation of an arc magnet of the same size at close distances. In the regions near the magnets the magnetic field is uniform as it should be.</p>
+    <div class="media-row">
+      <div class="media-row__cell" style="flex:1.1684 1 0">
+    <figure class="">
+      <img src="assets/img/p1-fea-arc.webp" alt="FEA field-line plot of block magnets arranged in an arc, showing the combined field wrapping around the chain of magnets" width="1311" height="1122" loading="lazy" decoding="async">
+    </figure>
+      </div>
+      <div class="media-row__cell" style="flex:1.3361 1 0">
+    <figure class="">
+      <img src="assets/img/p1-fea-ring.webp" alt="FEA vector and magnitude plot of a full ring of block magnets, with a uniform field in the regions close to the magnets" width="1590" height="1190" loading="lazy" decoding="async">
     </figure>
       </div>
     </div>
